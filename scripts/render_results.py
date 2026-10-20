@@ -71,11 +71,34 @@ Predictive intervals for oxy deficit and the cytokine panel contain the truth {f
 """
 
 
+def treatment_block() -> str:
+    t = json.loads((DOCS_DIR / "results" / "treatment.json").read_text())
+    s = t["schedules"]
+    p = t["patients"]
+
+    def d(x):
+        return f"{x['diff']:+.3f} (95% interval {x['ci95'][0]:+.3f} to {x['ci95'][1]:+.3f})"
+
+    return f"""### Treatment search (test patients, in this model)
+
+**n is small and this is one 2017 model, not a clinical result.** For {len(p)} test virtual patients
+chosen by a rule fixed beforehand, a schedule of four mediator interventions (they only *resemble*
+approved drugs) was searched on each patient's twin and scored on {t["futures"]} fresh futures of the true
+patient (fraction dead by day 28; `docs/treatment_report.md`). Pooled difference in mortality over the
+{len(p)} patients: twin schedule minus no treatment {d(s["twin_minus_none"])}; twin schedule minus the best
+one-size-fits-all schedule {d(s["twin_minus_one_size"])}; oracle (true parameters) minus no treatment
+{d(s["oracle_minus_none"])}. Only two of the five patients had a fate treatment could change; the
+twin-personalised schedule did no better than one-size-fits-all.
+"""
+
+
 def main() -> None:
     text = README.read_text()
     text = block("cost", cost_block(), text)
     if (DOCS_DIR / "results" / "validation.json").exists():
         text = block("validation", validation_block(), text)
+    if (DOCS_DIR / "results" / "treatment.json").exists():
+        text = block("treatment", treatment_block(), text)
     README.write_text(text)
 
 

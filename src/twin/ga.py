@@ -119,11 +119,14 @@ class GA:
         max_generations: int = 25,
         patience: int = 5,
         tol: float = 0.5,
+        initial: Sequence[Individual] = (),
     ) -> GAResult:
-        """Run the GA. `evaluate` maps a list of new individuals to their fitness (maximised)."""
+        """Run the GA. `evaluate` maps a list of new individuals to their fitness (maximised).
+        `initial` individuals (e.g. a known baseline) are placed in the first population."""
         res = GAResult()
         cache: dict[tuple, float] = {}
-        pop = [self.random_individual() for _ in range(self.pop_size)]
+        pop = [tuple(i) for i in initial][: self.pop_size]
+        pop += [self.random_individual() for _ in range(self.pop_size - len(pop))]
         best_so_far, stale = -np.inf, 0
         for gen in range(max_generations):
             new = []

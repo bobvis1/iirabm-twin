@@ -13,7 +13,10 @@ from pathlib import Path
 
 import numpy as np
 
+from twin import seeds
 from twin.calibrate import Posterior
+from twin.config import DECISION_STEP, HORIZON_STEPS, STEPS_PER_READING
+from twin.engine import Result
 from twin.forecast import LEVELS, Forecast, ForecastEngine, theta_summary
 from twin.librarydata import TARGET_DAYS, TARGET_STEPS, TARGET_VARS, LibraryData
 from twin.observe import Observations, make_observations
@@ -34,6 +37,58 @@ def regenerate_observations(patient_id: str, model) -> Observations:
     the same standard normals are used, so a different noise level rescales the same draws."""
     t = read_truth(patient_id)
     return make_observations(patient_id, t.series, t.record_steps, model)
+
+
+def true_theta_task(patient_id: str) -> dict:
+    """The patient's true parameters as an engine-config fragment (for the oracle search only)."""
+    return read_truth(patient_id).theta.to_engine()
+
+
+def scoring_configs(
+    patient_id: str, schedules: dict[str, list[dict]], n_futures: int = 64
+) -> list[dict]:
+    """Engine configs that score treatment schedules on the TRUE patient: true parameters and true
+    history seed, reseeded at the decision time with `n_futures` seeds from the future range. The
+    same futures are used for every schedule (paired comparison). Ids are 'pid|schedule|r'."""
+    t = read_truth(patient_id)
+    base = t.theta.to_engine()
+    cfgs = []
+    for name, windows in schedules.items():
+        for r in range(n_futures):
+            c = dict(
+                base,
+                id=f"{patient_id}|{name}|{r}",
+                seed=t.seed,
+                num_steps=HORIZON_STEPS,
+                output_stride=STEPS_PER_READING,
+                reseed_step=DECISION_STEP,
+                reseed_seed=seeds.future_seed(patient_id, r),
+            )
+            if windows:
+                c["interventions"] = windows
+            cfgs.append(c)
+    return cfgs
+
+
+def assert_history_matches_truth(
+    patient_id: str, results: dict[str, Result], names: list[str]
+) -> int:
+    """Every scored run must share the truth's history up to and including the decision time,
+    value for value. Returns the number of runs checked."""
+    t = read_truth(patient_id)
+    keep = t.record_steps <= DECISION_STEP
+    n = 0
+    for rid, r in results.items():
+        if not rid.startswith(patient_id + "|") or rid.split("|")[1] not in names:
+            continue
+        m = r.step <= DECISION_STEP
+        if not np.array_equal(r.step[m], t.record_steps[keep]):
+            raise AssertionError(f"{rid}: recorded steps up to T_d differ from the truth")
+        for name, vals in r.series.items():
+            if not np.array_equal(vals[m], t.series[name][keep]):
+                raise AssertionError(f"{rid}: history of {name} differs from the truth before T_d")
+        n += 1
+    return n
 
 
 def assert_development_only(patient_ids: list[str]) -> None:

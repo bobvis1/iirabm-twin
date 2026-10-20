@@ -51,3 +51,16 @@ setting, so near-nominal coverage is the expected result; see `docs/validation_r
 Predictive intervals for oxy deficit and the cytokine panel contain the truth 63%
 (50% interval), 89% (80%) and 98% (95%) of the time.
 <!-- validation:end -->
+
+<!-- treatment:start -->
+### Treatment search (test patients, in this model)
+
+**n is small and this is one 2017 model, not a clinical result.** For 5 test virtual patients
+chosen by a rule fixed beforehand, a schedule of four mediator interventions (they only *resemble*
+approved drugs) was searched on each patient's twin and scored on 64 fresh futures of the true
+patient (fraction dead by day 28; `docs/treatment_report.md`). Pooled difference in mortality over the
+5 patients: twin schedule minus no treatment -0.047 (95% interval -0.087 to -0.006); twin schedule minus the best
+one-size-fits-all schedule +0.000 (95% interval -0.037 to +0.037); oracle (true parameters) minus no treatment
+-0.072 (95% interval -0.109 to -0.034). Only two of the five patients had a fate treatment could change; the
+twin-personalised schedule did no better than one-size-fits-all.
+<!-- treatment:end -->

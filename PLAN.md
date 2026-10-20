@@ -484,6 +484,11 @@ prior-only baseline is in every table.
 
 ### Phase 6: Treatment search and scoring (4 h)
 
+*Done (2026-10-20), see `docs/treatment_protocol.md` (written before any result), `docs/treatment_report.md`.
+Patients test-006, -010, -012, -014, -015 by the preset rule; twin, one-size-fits-all and oracle searches on
+SageMaker (about $5.5 + $5.7), scored on 64 fresh futures each (about $0.45). Result: the twin schedule did
+no better than one-size-fits-all; only 2 of 5 patients had a fate treatment could change.*
+
 **6.1 Action space (0.5 h).** From T_d, up to 4 windows of 99 steps, starting every 100 steps.
 Four dials, chosen to resemble drugs that are approved for other uses:
 

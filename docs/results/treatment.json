@@ -1,0 +1,800 @@
+{
+ "patients": {
+  "test-006": {
+   "history_runs_checked": 256,
+   "mortality": {
+    "none": 0.296875,
+    "one_size": 0.15625,
+    "twin": 0.15625,
+    "oracle": 0.078125
+   },
+   "mean_days_survived": {
+    "none": 26.052061631944444,
+    "one_size": 26.98493923611111,
+    "twin": 27.111555989583334,
+    "oracle": 27.505609809027778
+   },
+   "twin_schedule": "window 1 (steps 612-711): IL1ra x2, TNF x0.5, GCSF x10, IFNg x2\nwindow 2 (steps 712-811): IL1ra x2, TNF x0.25, IFNg x10\nwindow 3 (steps 812-911): IL1ra x2, TNF x0.25, GCSF x5, IFNg x5\nwindow 4 (steps 912-1011): IL1ra x10, TNF x0.5, GCSF x10, IFNg x2",
+   "twin_search": {
+    "best_cost": {
+     "mortality": 0.46875,
+     "mean_oxy_plus_infection": 4424.579136555281
+    },
+    "no_treatment_cost": {
+     "mortality": 0.53125,
+     "mean_oxy_plus_infection": 4693.3467218425
+    },
+    "generations": 6,
+    "n_sims": 4160
+   },
+   "diffs": {
+    "twin_minus_none": {
+     "mortality": {
+      "mean_a": 0.15625,
+      "mean_b": 0.296875,
+      "diff": -0.140625,
+      "ci95": [
+       -0.296875,
+       0.015625
+      ],
+      "a_only": 8,
+      "b_only": 17
+     },
+     "steps_survived": {
+      "mean_a": 5577.234375,
+      "mean_b": 5359.28125,
+      "diff": 217.953125,
+      "ci95": [
+       10.283203125000005,
+       434.875390625
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "one_size_minus_none": {
+     "mortality": {
+      "mean_a": 0.15625,
+      "mean_b": 0.296875,
+      "diff": -0.140625,
+      "ci95": [
+       -0.28125,
+       0.0
+      ],
+      "a_only": 7,
+      "b_only": 16
+     },
+     "steps_survived": {
+      "mean_a": 5551.1875,
+      "mean_b": 5359.28125,
+      "diff": 191.90625,
+      "ci95": [
+       -21.484765625,
+       407.5730468750001
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "twin_minus_one_size": {
+     "mortality": {
+      "mean_a": 0.15625,
+      "mean_b": 0.15625,
+      "diff": 0.0,
+      "ci95": [
+       -0.109375,
+       0.109375
+      ],
+      "a_only": 6,
+      "b_only": 6
+     },
+     "steps_survived": {
+      "mean_a": 5577.234375,
+      "mean_b": 5551.1875,
+      "diff": 26.046875,
+      "ci95": [
+       -128.2859375,
+       181.566015625
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_none": {
+     "mortality": {
+      "mean_a": 0.078125,
+      "mean_b": 0.296875,
+      "diff": -0.21875,
+      "ci95": [
+       -0.34375,
+       -0.09375
+      ],
+      "a_only": 3,
+      "b_only": 17
+     },
+     "steps_survived": {
+      "mean_a": 5658.296875,
+      "mean_b": 5359.28125,
+      "diff": 299.015625,
+      "ci95": [
+       113.62421875,
+       487.813671875
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_twin": {
+     "mortality": {
+      "mean_a": 0.078125,
+      "mean_b": 0.15625,
+      "diff": -0.078125,
+      "ci95": [
+       -0.1875,
+       0.046875
+      ],
+      "a_only": 5,
+      "b_only": 10
+     },
+     "steps_survived": {
+      "mean_a": 5658.296875,
+      "mean_b": 5577.234375,
+      "diff": 81.0625,
+      "ci95": [
+       -74.3953125,
+       230.99531250000004
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    }
+   }
+  },
+  "test-010": {
+   "history_runs_checked": 256,
+   "mortality": {
+    "none": 0.84375,
+    "one_size": 0.75,
+    "twin": 0.75,
+    "oracle": 0.6875
+   },
+   "mean_days_survived": {
+    "none": 21.67060546875,
+    "one_size": 21.905078125,
+    "twin": 22.407367621527776,
+    "oracle": 22.757291666666667
+   },
+   "twin_schedule": "window 1 (steps 612-711): IL1ra x2, TNF x0.75, GCSF x2, IFNg x2\nwindow 2 (steps 712-811): TNF x0.75, GCSF x2, IFNg x10\nwindow 3 (steps 812-911): IL1ra x5, TNF x0.25, IFNg x2\nwindow 4 (steps 912-1011): IL1ra x10, TNF x0.25, GCSF x5",
+   "twin_search": {
+    "best_cost": {
+     "mortality": 0.4583333333333333,
+     "mean_oxy_plus_infection": 4523.198045470833
+    },
+    "no_treatment_cost": {
+     "mortality": 0.5,
+     "mean_oxy_plus_infection": 5146.3997083458335
+    },
+    "generations": 6,
+    "n_sims": 3144
+   },
+   "diffs": {
+    "twin_minus_none": {
+     "mortality": {
+      "mean_a": 0.75,
+      "mean_b": 0.84375,
+      "diff": -0.09375,
+      "ci95": [
+       -0.234375,
+       0.046875
+      ],
+      "a_only": 7,
+      "b_only": 13
+     },
+     "steps_survived": {
+      "mean_a": 4609.515625,
+      "mean_b": 4457.953125,
+      "diff": 151.5625,
+      "ci95": [
+       -140.503125,
+       446.1847656250001
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "one_size_minus_none": {
+     "mortality": {
+      "mean_a": 0.75,
+      "mean_b": 0.84375,
+      "diff": -0.09375,
+      "ci95": [
+       -0.234375,
+       0.046875
+      ],
+      "a_only": 8,
+      "b_only": 14
+     },
+     "steps_survived": {
+      "mean_a": 4506.1875,
+      "mean_b": 4457.953125,
+      "diff": 48.234375,
+      "ci95": [
+       -340.07890625,
+       435.4769531250001
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "twin_minus_one_size": {
+     "mortality": {
+      "mean_a": 0.75,
+      "mean_b": 0.75,
+      "diff": 0.0,
+      "ci95": [
+       -0.15625,
+       0.140625
+      ],
+      "a_only": 12,
+      "b_only": 12
+     },
+     "steps_survived": {
+      "mean_a": 4609.515625,
+      "mean_b": 4506.1875,
+      "diff": 103.328125,
+      "ci95": [
+       -292.0828125,
+       499.0261718750001
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_none": {
+     "mortality": {
+      "mean_a": 0.6875,
+      "mean_b": 0.84375,
+      "diff": -0.15625,
+      "ci95": [
+       -0.28125,
+       -0.015625
+      ],
+      "a_only": 5,
+      "b_only": 15
+     },
+     "steps_survived": {
+      "mean_a": 4681.5,
+      "mean_b": 4457.953125,
+      "diff": 223.546875,
+      "ci95": [
+       -100.8546875,
+       547.3921875000001
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_twin": {
+     "mortality": {
+      "mean_a": 0.6875,
+      "mean_b": 0.75,
+      "diff": -0.0625,
+      "ci95": [
+       -0.203125,
+       0.078125
+      ],
+      "a_only": 10,
+      "b_only": 14
+     },
+     "steps_survived": {
+      "mean_a": 4681.5,
+      "mean_b": 4609.515625,
+      "diff": 71.984375,
+      "ci95": [
+       -272.171875,
+       411.00078125
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    }
+   }
+  },
+  "test-012": {
+   "history_runs_checked": 256,
+   "mortality": {
+    "none": 0.0,
+    "one_size": 0.0,
+    "twin": 0.0,
+    "oracle": 0.0
+   },
+   "mean_days_survived": {
+    "none": 28.0,
+    "one_size": 28.0,
+    "twin": 28.0,
+    "oracle": 28.0
+   },
+   "twin_schedule": "window 1 (steps 612-711): IL1ra x2, TNF x0.5, GCSF x2\nwindow 2 (steps 712-811): TNF x0.75, GCSF x10, IFNg x5\nwindow 3 (steps 812-911): IL1ra x2, TNF x0.75, GCSF x2\nwindow 4 (steps 912-1011): IL1ra x5, TNF x0.25, GCSF x5, IFNg x2",
+   "twin_search": {
+    "best_cost": {
+     "mortality": 0.5625,
+     "mean_oxy_plus_infection": 6579.096329428156
+    },
+    "no_treatment_cost": {
+     "mortality": 0.6875,
+     "mean_oxy_plus_infection": 6241.145769781281
+    },
+    "generations": 8,
+    "n_sims": 5472
+   },
+   "diffs": {
+    "twin_minus_none": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "one_size_minus_none": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "twin_minus_one_size": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_none": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_twin": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    }
+   }
+  },
+  "test-014": {
+   "history_runs_checked": 256,
+   "mortality": {
+    "none": 0.0,
+    "one_size": 0.0,
+    "twin": 0.0,
+    "oracle": 0.015625
+   },
+   "mean_days_survived": {
+    "none": 28.0,
+    "one_size": 28.0,
+    "twin": 28.0,
+    "oracle": 27.966883680555554
+   },
+   "twin_schedule": "window 1 (steps 612-711): IL1ra x5, TNF x0.75, GCSF x2, IFNg x5\nwindow 2 (steps 712-811): IL1ra x5, TNF x0.25, GCSF x5, IFNg x2\nwindow 3 (steps 812-911): IL1ra x10, TNF x0.5, GCSF x2, IFNg x5\nwindow 4 (steps 912-1011): IL1ra x2, TNF x0.25, GCSF x5",
+   "twin_search": {
+    "best_cost": {
+     "mortality": 0.4375,
+     "mean_oxy_plus_infection": 5332.846307514032
+    },
+    "no_treatment_cost": {
+     "mortality": 0.53125,
+     "mean_oxy_plus_infection": 5733.910311667987
+    },
+    "generations": 6,
+    "n_sims": 4224
+   },
+   "diffs": {
+    "twin_minus_none": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "one_size_minus_none": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "twin_minus_one_size": {
+     "mortality": {
+      "mean_a": 0.0,
+      "mean_b": 0.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5760.0,
+      "mean_b": 5760.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_none": {
+     "mortality": {
+      "mean_a": 0.015625,
+      "mean_b": 0.0,
+      "diff": 0.015625,
+      "ci95": [
+       0.0,
+       0.046875
+      ],
+      "a_only": 1,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5753.1875,
+      "mean_b": 5760.0,
+      "diff": -6.8125,
+      "ci95": [
+       -20.4375,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_twin": {
+     "mortality": {
+      "mean_a": 0.015625,
+      "mean_b": 0.0,
+      "diff": 0.015625,
+      "ci95": [
+       0.0,
+       0.046875
+      ],
+      "a_only": 1,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 5753.1875,
+      "mean_b": 5760.0,
+      "diff": -6.8125,
+      "ci95": [
+       -20.4375,
+       0.0
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    }
+   }
+  },
+  "test-015": {
+   "history_runs_checked": 256,
+   "mortality": {
+    "none": 1.0,
+    "one_size": 1.0,
+    "twin": 1.0,
+    "oracle": 1.0
+   },
+   "mean_days_survived": {
+    "none": 12.025401475694444,
+    "one_size": 11.964637586805555,
+    "twin": 12.041959635416665,
+    "oracle": 12.204123263888889
+   },
+   "twin_schedule": "window 1 (steps 612-711): IFNg x5\nwindow 2 (steps 712-811): IL1ra x10, TNF x0.25, GCSF x5, IFNg x10\nwindow 3 (steps 812-911): IL1ra x10, TNF x0.75, GCSF x5, IFNg x10\nwindow 4 (steps 912-1011): TNF x0.25, GCSF x5, IFNg x10",
+   "twin_search": {
+    "best_cost": {
+     "mortality": 0.5,
+     "mean_oxy_plus_infection": 4840.110943508928
+    },
+    "no_treatment_cost": {
+     "mortality": 0.5714285714285714,
+     "mean_oxy_plus_infection": 5138.471995178271
+    },
+    "generations": 6,
+    "n_sims": 3724
+   },
+   "diffs": {
+    "twin_minus_none": {
+     "mortality": {
+      "mean_a": 1.0,
+      "mean_b": 1.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 2477.203125,
+      "mean_b": 2473.796875,
+      "diff": 3.40625,
+      "ci95": [
+       -141.267578125,
+       157.361328125
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "one_size_minus_none": {
+     "mortality": {
+      "mean_a": 1.0,
+      "mean_b": 1.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 2461.296875,
+      "mean_b": 2473.796875,
+      "diff": -12.5,
+      "ci95": [
+       -136.6875,
+       119.237890625
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "twin_minus_one_size": {
+     "mortality": {
+      "mean_a": 1.0,
+      "mean_b": 1.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 2477.203125,
+      "mean_b": 2461.296875,
+      "diff": 15.90625,
+      "ci95": [
+       -130.67734375,
+       157.42929687500003
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_none": {
+     "mortality": {
+      "mean_a": 1.0,
+      "mean_b": 1.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 2510.5625,
+      "mean_b": 2473.796875,
+      "diff": 36.765625,
+      "ci95": [
+       -85.406640625,
+       154.656640625
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    },
+    "oracle_minus_twin": {
+     "mortality": {
+      "mean_a": 1.0,
+      "mean_b": 1.0,
+      "diff": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "a_only": 0,
+      "b_only": 0
+     },
+     "steps_survived": {
+      "mean_a": 2510.5625,
+      "mean_b": 2477.203125,
+      "diff": 33.359375,
+      "ci95": [
+       -102.314453125,
+       166.86406250000002
+      ],
+      "a_only": null,
+      "b_only": null
+     }
+    }
+   }
+  }
+ },
+ "futures": 64,
+ "schedules": {
+  "twin_minus_none": {
+   "diff": -0.046875,
+   "ci95": [
+    -0.0875,
+    -0.00625
+   ],
+   "n_patients": 5
+  },
+  "one_size_minus_none": {
+   "diff": -0.046875,
+   "ci95": [
+    -0.0875,
+    -0.00625
+   ],
+   "n_patients": 5
+  },
+  "twin_minus_one_size": {
+   "diff": 0.0,
+   "ci95": [
+    -0.0375,
+    0.0375
+   ],
+   "n_patients": 5
+  },
+  "oracle_minus_none": {
+   "diff": -0.071875,
+   "ci95": [
+    -0.109375,
+    -0.034375
+   ],
+   "n_patients": 5
+  }
+ },
+ "one_size_fits_all": {
+  "schedule": "window 1 (steps 612-711): IL1ra x5, TNF x0.75, GCSF x5, IFNg x10\nwindow 2 (steps 712-811): GCSF x10\nwindow 3 (steps 812-911): IL1ra x5, TNF x0.75, GCSF x5\nwindow 4 (steps 912-1011): IL1ra x2, TNF x0.5, GCSF x10, IFNg x5",
+  "best_cost": {
+   "mortality": 0.5,
+   "mean_oxy_plus_infection": 4100.6404141121875
+  },
+  "no_treatment_cost": {
+   "mortality": 0.5,
+   "mean_oxy_plus_infection": 4111.984851622922
+  }
+ }
+}

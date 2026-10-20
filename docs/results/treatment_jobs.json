@@ -1,0 +1,7 @@
+{
+  "note": "Costs are instance-hours x $1.80 (ml.c8i.8xlarge, derived price); confirm in Cost Explorer.",
+  "searches_twin_and_one_size_fits_all": {"instances": 6, "wall_minutes": 30.6, "estimated_cost_usd": 5.50},
+  "searches_oracle": {"instances": 5, "wall_minutes": 38.0, "estimated_cost_usd": 5.70},
+  "scoring_1280_runs": {"instances": 1, "wall_minutes": 15.0, "estimated_cost_usd": 0.45},
+  "failed_first_attempt": {"instances": 6, "wall_seconds": 29, "estimated_cost_usd": 0.09, "cause": "an ensemble theta with too few runs alive at 72 h; builder made patient and tolerant"}
+}
