@@ -87,7 +87,7 @@ data/            # git-ignored: library and run outputs
    `../iirabm`:
    ```bash
    git remote add github https://github.com/bobvis1/iirabm.git
-   git push github master            # master stays identical to upstream
+   git push github main            # main stays identical to upstream
    git checkout -b twin && git push -u github twin
    ```
 3. Create the GitHub repository `bobvis1/iirabm-twin` (private until Phase 7 if you prefer).
