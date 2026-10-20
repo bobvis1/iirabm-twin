@@ -81,6 +81,29 @@ the next Sobol points.
 points = about **{lib_h:.0f} CPU-hours** (budget: at most about 100). The step time is the Apple
 M4 figure from Phase 1; Phase 3 re-measures it on the SageMaker instance and N is set from that.
 """
+    lib_path = DOCS_DIR / "results" / "library_summary.json"
+    if lib_path.exists():
+        lib = json.loads(lib_path.read_text())
+        job = lib.get("job", {})
+        text += f"""
+## The library as run
+
+{lib["n_design_points"]} design points x {lib["seeds_per_point"]} seeds = {lib["runs"]:,} full-horizon runs
+(`scripts/analyze_library.py`; figure `docs/figures/mortality_landscape.png`). Every (design point,
+seed) pair is present exactly once: **{lib["complete"]}**; seeds as expected: {lib["seeds_as_expected"]}.
+
+- {lib["alive_at_72h"]:.0%} of runs are alive at 72 h; 28-day mortality is {lib["mortality_28d_all_runs"]:.0%} over all runs and
+  {lib["mortality_28d_given_alive_at_72h"]:.0%} among runs alive at 72 h. Mean {lib["mean_steps_per_run"]:.0f} steps per run.
+- **Treatment fitness horizon H_f = {lib["fitness_horizon_days"]} days** ({lib["fitness_horizon_days"] * lib["steps_per_day"]:.0f} steps): the shortest whole number of days
+  by which at least 90% of 28-day deaths, among runs alive at the decision time, have happened.
+  Computed from the library alone (no patient data); Phase 6 scores treatments on the full 28 days
+  regardless.
+"""
+        if job:
+            text += f"""- SageMaker job: {job["instances"]} x ml.c8i.8xlarge, {job["wall_minutes"]:.1f} min, {job["instance_hours"]:.1f}
+  instance-hours, about **${job["estimated_cost_usd"]:.2f}** at ${job["price_per_instance_hour_usd"]:.2f} per instance-hour (derived price;
+  confirm in Cost Explorer), {job["steps_per_second_per_instance"]:,.0f} steps per second per instance.
+"""
     (DOCS_DIR / "parameter_space.md").write_text(text)
 
 

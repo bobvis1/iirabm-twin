@@ -44,6 +44,7 @@ def main() -> None:
         "name", help="prefix under the bucket holding <name>/configs/ (smoke, library, ...)"
     )
     ap.add_argument("--module", default="twin.jobs.simulate", help="entry point module")
+    ap.add_argument("--arg", action="append", default=[], help="argument passed to the entry point")
     ap.add_argument("--image-uri", help="default: <ecr repo>:latest (prefer the git-sha tag)")
     ap.add_argument("--instance-type", default="ml.c5.9xlarge")
     ap.add_argument("--instance-count", type=int, default=1)
@@ -76,6 +77,7 @@ def main() -> None:
         app_specification=AppSpecification(
             image_uri=args.image_uri or f"{infra.ecr_repository_url}:latest",
             container_entrypoint=["python", "-m", args.module],
+            container_arguments=args.arg or None,
         ),
         processing_inputs=[
             ProcessingInput(
@@ -103,7 +105,7 @@ def main() -> None:
                 ProcessingOutput(
                     output_name="results",
                     s3_output=ProcessingS3Output(
-                        s3_uri=out_uri, local_path=OUT, s3_upload_mode="EndOfJob"
+                        s3_uri=out_uri, local_path=OUT, s3_upload_mode="Continuous"
                     ),
                 )
             ],

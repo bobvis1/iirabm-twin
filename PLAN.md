@@ -337,7 +337,7 @@ Note the Spot alternative (Training jobs) in `docs/future_work.md`.
   step on the SageMaker instance, with one worker per vCPU, and use it to size 3.4 and to
   recheck the Phase 4 and 6 budgets. Expect it to be slower than Apple Silicon.
 
-**3.4 The library (2 h, mostly waiting).** N Sobol design points (from Phase 2) × K library
+**3.4 The library (2 h, mostly waiting; done 2026-10-20).** N Sobol design points (from Phase 2) × K library
 seeds (K = 16), full horizon, `output_stride` 51, all outputs. **Choose N so the whole library
 costs at most about 100 CPU-hours** (about $10-15; state the estimate before launching). Store
 as Parquet in long format (`theta_id, seed, step, variable values...`) plus a `thetas.parquet`
@@ -348,6 +348,12 @@ table. Download a local copy.
 - From the library alone (no patient data), fix the **treatment fitness horizon** H_f for
   Phase 6: the shortest whole number of days by which at least 90% of 28-day deaths, among
   runs alive at T_d, have happened. Record it in `docs/parameter_space.md`.
+
+*Done:* 4,096 x 16 on 4 x ml.c8i.8xlarge (24 workers each), 91.5 minutes, about $11; 65,536 runs,
+every (design point, seed) pair present exactly once (checked by `scripts/analyze_library.py`);
+H_f = 18 days (`docs/parameter_space.md`). The smoke job was byte-identical to the local amd64
+container (100 runs, 6,601 series rows). See the measured cost table under "Compute and cost
+estimate" for why the instance is c8i and not the planned c5.
 
 **Acceptance:** every (θ, seed) pair in the library is present exactly once; smoke parity
 checked; the cost is recorded in the README cost section; the AWS resources that cost money by
@@ -538,22 +544,36 @@ that this is one 2017 model, not a clinical result.
 
 ## Compute and cost estimate
 
-Measured on Apple Silicon: about 1 ms per simulated step on one core. Phase 3's smoke job
-replaces this with the SageMaker instance's figure.
+**Measured (Phase 3).** The engine runs at about 1 ms per simulated step on one Apple M4 core, but
+it is cache-bound, and on SageMaker it is much slower per step and sensitive to the worker count
+(`docs/results/sagemaker_timing.json`, `src/twin/jobs/bench.py`). Throughput per instance, best
+worker count, and price (AWS public price list, us-east-2; the c8i.8xlarge price is derived from the
+c8i.32xlarge):
 
-| Work | CPU-hours (estimate) |
-|---|---|
-| Phase 2 pilot (local) | about 2, free |
-| Library | at most 100 |
-| GA calibration, 60 patients (20 development + 40 test subsets) | about 60-120 |
-| Treatment search, 5 patients + one-size-fits-all (6 × at most 10) | at most 60 |
-| Oracle schedules, optional (5 × at most 10) | at most 50 |
-| **Total on AWS** | **about 220-330** |
+| Instance | Workers | Steps/s | $/hour | $ per million steps |
+|---|---|---|---|---|
+| ml.c5.9xlarge (plan's choice) | 18 of 36 vCPU | 4,911 | 1.836 | 0.104 |
+| ml.c6i.8xlarge | 16 of 32 | 6,127 | 1.632 | 0.074 |
+| ml.c7i.8xlarge | 24 of 32 | 7,461 | 1.714 | 0.064 |
+| **ml.c8i.8xlarge (used)** | **24 of 32** | **9,398** (9,737 in the library job) | ~1.80 | **0.053** |
 
-On 36-vCPU compute-optimized instances, that is roughly 6-9 instance-hours: an estimate of about
-$15-40 including overhead. Check current prices before each launch. The budget alarm is $50.
-The Apple Silicon step time is optimistic for SageMaker instances; every row is re-estimated
-with the Phase 3 measurement before its job launches.
+Never run one worker per vCPU: on the c5 it cut throughput by a third. **All SageMaker jobs use
+ml.c8i.8xlarge with 24 workers** unless a later benchmark changes this.
+
+| Work | Million steps | Cost on c8i (about $0.052 per million steps) |
+|---|---|---|
+| Phase 2 pilot (local) | 3.7 | free |
+| Smoke, timing and benchmark jobs (c5, c6i, c7i, c8i) | | about $2 |
+| **Library, as run (4,096 x 16, 91.5 min on 4 instances)** | **214** | **about $11 (estimate; check the bill)** |
+| GA calibration, 60 patients (20 development + 40 test subsets) | 216-432 | about $11-22 |
+| Treatment search, 5 patients + one-size-fits-all (6 x at most 36M steps) | at most 216 | at most about $11 |
+| Oracle schedules, optional (5 x at most 36M steps) | at most 180 | at most about $9 |
+| **Total on AWS** | | **about $45-57** |
+
+Earlier (Phase 0) estimate was $15-40 using 1 ms per step on every core; the measured cost is
+higher. The budget alarm is $50 and is only an alarm. The plan's per-row "CPU-hour" caps (for
+example "at most 10 CPU-hours per search") are now read as 36 million steps, the same work, which
+costs about $1.9 per search on c8i. Every row is re-estimated before its job launches.
 
 ## Cut order if needed
 

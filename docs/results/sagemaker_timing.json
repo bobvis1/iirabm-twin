@@ -1,78 +1,279 @@
 {
-  "instance_type": "ml.c5.9xlarge",
-  "price_per_hour_usd_assumed": 1.84,
-  "price_note": "from memory, not verified (pricing API is denied to this identity); check the bill",
-  "cpu": {
-    "cpu_count": 36,
-    "model": "Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz",
-    "cache_index0": "1/32K",
-    "cache_index1": "1/32K",
-    "cache_index2": "2/1024K",
-    "cache_index3": "3/25344K"
+  "source_of_prices": "AWS public price list AmazonSageMaker us-east-2 (2026-10-16); ml.c8i.8xlarge derived as 1/4 of ml.c8i.32xlarge (not listed)",
+  "price_per_hour_usd": {
+    "ml.c5.9xlarge": 1.836,
+    "ml.c6i.8xlarge": 1.632,
+    "ml.c7i.8xlarge": 1.7136,
+    "ml.c8i.8xlarge": 1.7992
   },
-  "worker_sweep": [
-    {
-      "workers": 36,
-      "wall_s": 74.51298809051514,
-      "steps": 244590,
-      "steps_per_s": 3282.5149852114737,
-      "ms_per_step_cpu": 9.186248988102538,
-      "user_s": 2246.027115,
-      "system_s": 0.837525
+  "instances": {
+    "ml.c5.9xlarge": {
+      "cpu": {
+        "cpu_count": 36,
+        "model": "Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz",
+        "cache_index0": "1/32K",
+        "cache_index1": "1/32K",
+        "cache_index2": "2/1024K",
+        "cache_index3": "3/25344K"
+      },
+      "trials": [
+        {
+          "workers": 36,
+          "wall_s": 74.51298809051514,
+          "steps": 244590,
+          "steps_per_s": 3282.5149852114737,
+          "ms_per_step_cpu": 9.186248988102538,
+          "user_s": 2246.027115,
+          "system_s": 0.837525
+        },
+        {
+          "workers": 27,
+          "wall_s": 59.21145939826965,
+          "steps": 244590,
+          "steps_per_s": 4130.788237371966,
+          "ms_per_step_cpu": 5.209937331861483,
+          "user_s": 1274.2385800000002,
+          "system_s": 0.059992000000000045
+        },
+        {
+          "workers": 18,
+          "wall_s": 49.80803322792053,
+          "steps": 244590,
+          "steps_per_s": 4910.65364658671,
+          "ms_per_step_cpu": 3.1019695040680313,
+          "user_s": 758.6307299999999,
+          "system_s": 0.07999099999999992
+        },
+        {
+          "workers": 12,
+          "wall_s": 66.48127317428589,
+          "steps": 244590,
+          "steps_per_s": 3679.0811655906177,
+          "ms_per_step_cpu": 2.978488323316571,
+          "user_s": 728.498458,
+          "system_s": 0.010001000000000038
+        },
+        {
+          "workers": 6,
+          "wall_s": 121.54142379760742,
+          "steps": 244590,
+          "steps_per_s": 2012.4003188188324,
+          "ms_per_step_cpu": 2.9398166032953124,
+          "user_s": 719.0497430000005,
+          "system_s": 0.0
+        }
+      ],
+      "best": {
+        "workers": 18,
+        "wall_s": 49.80803322792053,
+        "steps": 244590,
+        "steps_per_s": 4910.65364658671,
+        "ms_per_step_cpu": 3.1019695040680313,
+        "user_s": 758.6307299999999,
+        "system_s": 0.07999099999999992
+      },
+      "usd_per_million_steps": 0.10385582790072968
     },
-    {
-      "workers": 27,
-      "wall_s": 59.21145939826965,
-      "steps": 244590,
-      "steps_per_s": 4130.788237371966,
-      "ms_per_step_cpu": 5.209937331861483,
-      "user_s": 1274.2385800000002,
-      "system_s": 0.059992000000000045
+    "ml.c6i.8xlarge": {
+      "cpu": {
+        "cpu_count": 32,
+        "model": "Intel(R) Xeon(R) Platinum 8375C CPU @ 2.90GHz",
+        "cache_index0": "1/48K",
+        "cache_index1": "1/32K",
+        "cache_index2": "2/1280K",
+        "cache_index3": "3/55296K"
+      },
+      "trials": [
+        {
+          "workers": 32,
+          "wall_s": 47.09549593925476,
+          "steps": 244590,
+          "steps_per_s": 5193.490271670136,
+          "ms_per_step_cpu": 4.995376078335172,
+          "user_s": 1221.459421,
+          "system_s": 0.359614
+        },
+        {
+          "workers": 24,
+          "wall_s": 43.41531491279602,
+          "steps": 244590,
+          "steps_per_s": 5633.726266670721,
+          "ms_per_step_cpu": 3.5675095833844397,
+          "user_s": 872.5071750000002,
+          "system_s": 0.069994
+        },
+        {
+          "workers": 16,
+          "wall_s": 39.92239999771118,
+          "steps": 244590,
+          "steps_per_s": 6126.63567355727,
+          "ms_per_step_cpu": 2.2999120732654634,
+          "user_s": 562.5354939999997,
+          "system_s": 0.0
+        },
+        {
+          "workers": 12,
+          "wall_s": 51.27987718582153,
+          "steps": 244590,
+          "steps_per_s": 4769.707211148063,
+          "ms_per_step_cpu": 2.2863681630483663,
+          "user_s": 559.2227889999999,
+          "system_s": 0.0
+        },
+        {
+          "workers": 8,
+          "wall_s": 74.38305234909058,
+          "steps": 244590,
+          "steps_per_s": 3288.2490335581183,
+          "ms_per_step_cpu": 2.290898021178298,
+          "user_s": 560.330747,
+          "system_s": 0.0
+        }
+      ],
+      "best": {
+        "workers": 16,
+        "wall_s": 39.92239999771118,
+        "steps": 244590,
+        "steps_per_s": 6126.63567355727,
+        "ms_per_step_cpu": 2.2999120732654634,
+        "user_s": 562.5354939999997,
+        "system_s": 0.0
+      },
+      "usd_per_million_steps": 0.0739938454786748
     },
-    {
-      "workers": 18,
-      "wall_s": 49.80803322792053,
-      "steps": 244590,
-      "steps_per_s": 4910.65364658671,
-      "ms_per_step_cpu": 3.1019695040680313,
-      "user_s": 758.6307299999999,
-      "system_s": 0.07999099999999992
+    "ml.c7i.8xlarge": {
+      "cpu": {
+        "cpu_count": 32,
+        "model": "Intel(R) Xeon(R) Platinum 8488C",
+        "cache_index0": "1/48K",
+        "cache_index1": "1/32K",
+        "cache_index2": "2/2048K",
+        "cache_index3": "3/107520K"
+      },
+      "trials": [
+        {
+          "workers": 32,
+          "wall_s": 32.87414908409119,
+          "steps": 244590,
+          "steps_per_s": 7440.192577284522,
+          "ms_per_step_cpu": 3.264846056666258,
+          "user_s": 798.408899,
+          "system_s": 0.139798
+        },
+        {
+          "workers": 24,
+          "wall_s": 32.78058934211731,
+          "steps": 244590,
+          "steps_per_s": 7461.427781157819,
+          "ms_per_step_cpu": 2.604984692751135,
+          "user_s": 637.1032150000001,
+          "system_s": 0.04999099999999998
+        },
+        {
+          "workers": 16,
+          "wall_s": 33.10235047340393,
+          "steps": 244590,
+          "steps_per_s": 7388.9012865269415,
+          "ms_per_step_cpu": 1.8766935075023505,
+          "user_s": 458.93255699999986,
+          "system_s": 0.08790799999999999
+        },
+        {
+          "workers": 12,
+          "wall_s": 42.5015172958374,
+          "steps": 244590,
+          "steps_per_s": 5754.853369057371,
+          "ms_per_step_cpu": 1.8706590498385052,
+          "user_s": 457.494504,
+          "system_s": 0.04999300000000001
+        },
+        {
+          "workers": 8,
+          "wall_s": 61.05549883842468,
+          "steps": 244590,
+          "steps_per_s": 4006.027379241879,
+          "ms_per_step_cpu": 1.8659649004456436,
+          "user_s": 456.386356,
+          "system_s": 0.00999899999999998
+        }
+      ],
+      "best": {
+        "workers": 24,
+        "wall_s": 32.78058934211731,
+        "steps": 244590,
+        "steps_per_s": 7461.427781157819,
+        "ms_per_step_cpu": 2.604984692751135,
+        "user_s": 637.1032150000001,
+        "system_s": 0.04999099999999998
+      },
+      "usd_per_million_steps": 0.06379476072957946
     },
-    {
-      "workers": 12,
-      "wall_s": 66.48127317428589,
-      "steps": 244590,
-      "steps_per_s": 3679.0811655906177,
-      "ms_per_step_cpu": 2.978488323316571,
-      "user_s": 728.498458,
-      "system_s": 0.010001000000000038
-    },
-    {
-      "workers": 6,
-      "wall_s": 121.54142379760742,
-      "steps": 244590,
-      "steps_per_s": 2012.4003188188324,
-      "ms_per_step_cpu": 2.9398166032953124,
-      "user_s": 719.0497430000005,
-      "system_s": 0.0
+    "ml.c8i.8xlarge": {
+      "cpu": {
+        "cpu_count": 32,
+        "model": "Intel(R) Xeon(R) 6975P-C",
+        "cache_index0": "1/48K",
+        "cache_index1": "1/64K",
+        "cache_index2": "2/2048K",
+        "cache_index3": "3/491520K"
+      },
+      "trials": [
+        {
+          "workers": 32,
+          "wall_s": 27.01003646850586,
+          "steps": 244590,
+          "steps_per_s": 9055.522760407817,
+          "ms_per_step_cpu": 2.614354577047304,
+          "user_s": 639.335038,
+          "system_s": 0.10994799999999999
+        },
+        {
+          "workers": 24,
+          "wall_s": 26.026063919067383,
+          "steps": 244590,
+          "steps_per_s": 9397.886701600195,
+          "ms_per_step_cpu": 2.0485570383090064,
+          "user_s": 501.0065739999999,
+          "system_s": 0.04999200000000001
+        },
+        {
+          "workers": 16,
+          "wall_s": 26.827061891555786,
+          "steps": 244590,
+          "steps_per_s": 9117.286156371389,
+          "ms_per_step_cpu": 1.5208157242732736,
+          "user_s": 371.956318,
+          "system_s": 0.01999999999999999
+        },
+        {
+          "workers": 12,
+          "wall_s": 34.38525319099426,
+          "steps": 244590,
+          "steps_per_s": 7113.223760238585,
+          "ms_per_step_cpu": 1.514169598102948,
+          "user_s": 370.250755,
+          "system_s": 0.09998699999999999
+        },
+        {
+          "workers": 8,
+          "wall_s": 49.467116355895996,
+          "steps": 244590,
+          "steps_per_s": 4944.496829778259,
+          "ms_per_step_cpu": 1.5147130054376707,
+          "user_s": 370.4836539999999,
+          "system_s": 0.0
+        }
+      ],
+      "best": {
+        "workers": 24,
+        "wall_s": 26.026063919067383,
+        "steps": 244590,
+        "steps_per_s": 9397.886701600195,
+        "ms_per_step_cpu": 2.0485570383090064,
+        "user_s": 501.0065739999999,
+        "system_s": 0.04999200000000001
+      },
+      "usd_per_million_steps": 0.05317980452910542
     }
-  ],
-  "best_workers": 18,
-  "best_steps_per_s": 4910.65364658671,
-  "smoke": {
-    "workers": 36,
-    "total_steps": 340180,
-    "wall_s": 76.50509595870972,
-    "ms_per_step_per_worker": 8.096253320340848,
-    "cpu_hours": 0.7650509595870971
-  },
-  "timing_run_36_workers": {
-    "workers": 36,
-    "total_steps": 491547,
-    "wall_s": 144.28498339653015,
-    "ms_per_step_per_worker": 10.567167335524548,
-    "cpu_hours": 1.4428498339653015,
-    "engine_cpu_s": 4820.231251,
-    "ms_per_step_cpu": 9.806246912299333
   }
 }

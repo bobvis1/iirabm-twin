@@ -54,3 +54,19 @@ the next Sobol points.
 3104 simulated steps per run in the pilot x 1 ms per step x 16 seeds x 4096
 points = about **57 CPU-hours** (budget: at most about 100). The step time is the Apple
 M4 figure from Phase 1; Phase 3 re-measures it on the SageMaker instance and N is set from that.
+
+## The library as run
+
+4096 design points x 16 seeds = 65,536 full-horizon runs
+(`scripts/analyze_library.py`; figure `docs/figures/mortality_landscape.png`). Every (design point,
+seed) pair is present exactly once: **True**; seeds as expected: True.
+
+- 80% of runs are alive at 72 h; 28-day mortality is 56% over all runs and
+  45% among runs alive at 72 h. Mean 3263 steps per run.
+- **Treatment fitness horizon H_f = 18 days** (3703 steps): the shortest whole number of days
+  by which at least 90% of 28-day deaths, among runs alive at the decision time, have happened.
+  Computed from the library alone (no patient data); Phase 6 scores treatments on the full 28 days
+  regardless.
+- SageMaker job: 4 x ml.c8i.8xlarge, 91.5 min, 6.1
+  instance-hours, about **$10.98** at $1.80 per instance-hour (derived price;
+  confirm in Cost Explorer), 9,737 steps per second per instance.
