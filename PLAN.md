@@ -363,6 +363,11 @@ the hour are stopped.
 
 ### Phase 4: Calibration: library posterior and GA (5 h)
 
+*Done (2026-10-20), see `docs/calibration.md`: settings in `config/calibration.yaml` (tau = 0.1, theta-level; the
+selection rule was revised after the first run because pooled coverage hid `inj_number` being too
+narrow); the GA's parameter intervals are too narrow on the development patients and are reported as
+such; prior-only baseline implemented (`twin.calibrate.prior_only`).*
+
 Work on the **development cohort only** in this phase. Do not load test-cohort observations.
 
 **4.1 Likelihood (`twin.likelihood`) (1.5 h).** A Gaussian **synthetic likelihood** (Wood, 2010)
@@ -565,10 +570,10 @@ ml.c8i.8xlarge with 24 workers** unless a later benchmark changes this.
 | Phase 2 pilot (local) | 3.7 | free |
 | Smoke, timing and benchmark jobs (c5, c6i, c7i, c8i) | | about $2 |
 | **Library, as run (4,096 x 16, 91.5 min on 4 instances)** | **214** | **about $11 (estimate; check the bill)** |
-| GA calibration, 60 patients (20 development + 40 test subsets) | 216-432 | about $11-22 |
+| GA calibration, 60 patients (20 development + 40 test subsets) | about 190 (measured: 20 patients = 27.6 min on 4 instances) | **20 dev patients cost about $3.3; 40 test patients about $6.6** |
 | Treatment search, 5 patients + one-size-fits-all (6 x at most 36M steps) | at most 216 | at most about $11 |
 | Oracle schedules, optional (5 x at most 36M steps) | at most 180 | at most about $9 |
-| **Total on AWS** | | **about $45-57** |
+| **Total on AWS** | | **about $35-45** (library $11, dev GA $3.3, test GA about $6.6, search about $11, oracle about $9, tests $2) |
 
 Earlier (Phase 0) estimate was $15-40 using 1 ms per step on every core; the measured cost is
 higher. The budget alarm is $50 and is only an alarm. The plan's per-row "CPU-hour" caps (for

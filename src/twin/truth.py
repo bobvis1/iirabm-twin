@@ -70,7 +70,8 @@ def read_truth(patient_id: str) -> PatientTruth:
 
 
 def list_patients(cohort: str | None = None) -> list[str]:
+    """Patient ids, optionally one cohort. The cohort comes from the id ("dev-" or "test-"), so no
+    other patient's truth file is opened."""
     ids = sorted(p.stem for p in TRUTH_DIR.glob("*.json")) if TRUTH_DIR.exists() else []
-    if cohort is None:
-        return ids
-    return [i for i in ids if json.loads(_paths(i)[0].read_text())["cohort"] == cohort]
+    prefix = {"development": "dev-", "test": "test-", None: ""}[cohort]
+    return [i for i in ids if i.startswith(prefix)]

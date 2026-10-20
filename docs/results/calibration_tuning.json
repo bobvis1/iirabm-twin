@@ -1,0 +1,5274 @@
+{
+ "n_patients": 40,
+ "rule": ", fixed before looking at the results (PLAN.md 4.1): among the configurations tried,\npick the one whose pooled 80% intervals cover closest to 80% -- the sum of |coverage - 0.8| over\nthe parameter intervals and the forecast intervals -- breaking ties by the lower Brier score of the\n28-day mortality forecast. tau = 1 is always reported alongside, to show how much tempering mattered.",
+ "prior_only": {
+  "n_patients": 40,
+  "theta_coverage": {
+   "0.5": 0.595,
+   "0.8": 0.91,
+   "0.95": 0.985
+  },
+  "theta_coverage_by_param": {
+   "inj_number": {
+    "0.5": 0.425,
+    "0.8": 0.825,
+    "0.95": 0.975
+   },
+   "oxyHeal": {
+    "0.5": 0.55,
+    "0.8": 0.75,
+    "0.95": 0.95
+   },
+   "infectSpread": {
+    "0.5": 0.675,
+    "0.8": 0.975,
+    "0.95": 1.0
+   },
+   "numRecurInj": {
+    "0.5": 0.675,
+    "0.8": 1.0,
+    "0.95": 1.0
+   },
+   "numInfectRepeat": {
+    "0.5": 0.65,
+    "0.8": 1.0,
+    "0.95": 1.0
+   }
+  },
+  "contraction_by_param": {
+   "inj_number": 0.8004016304841672,
+   "oxyHeal": 0.9961529097101458,
+   "infectSpread": 0.9666196800429419,
+   "numRecurInj": 0.9949127914361501,
+   "numInfectRepeat": 0.9555856051385347
+  },
+  "forecast_coverage": {
+   "0.5": 0.5572263993316625,
+   "0.8": 0.87468671679198,
+   "0.95": 0.9766081871345029
+  },
+  "forecast_n": 1197,
+  "brier": 0.23529598535328278,
+  "mortality_mean_forecast": 0.45117838702916907,
+  "mortality_observed": 0.325,
+  "ess_theta_median": 3326.1557442266767,
+  "ess_theta_min": 3326.1557442266767
+ },
+ "best": {
+  "name": "synthetic/theta/tau=0.1/tau_run=1.0/floor=0.25",
+  "config": {
+   "theta_method": "synthetic",
+   "forecast_level": "theta",
+   "tau": 0.1,
+   "tau_run": 1.0,
+   "var_floor": 0.25,
+   "survival_floor": 0.001
+  },
+  "summary": {
+   "n_patients": 40,
+   "theta_coverage": {
+    "0.5": 0.68,
+    "0.8": 0.905,
+    "0.95": 0.98
+   },
+   "theta_coverage_by_param": {
+    "inj_number": {
+     "0.5": 0.75,
+     "0.8": 0.875,
+     "0.95": 0.95
+    },
+    "oxyHeal": {
+     "0.5": 0.5,
+     "0.8": 0.675,
+     "0.95": 0.95
+    },
+    "infectSpread": {
+     "0.5": 0.675,
+     "0.8": 1.0,
+     "0.95": 1.0
+    },
+    "numRecurInj": {
+     "0.5": 0.725,
+     "0.8": 0.975,
+     "0.95": 1.0
+    },
+    "numInfectRepeat": {
+     "0.5": 0.75,
+     "0.8": 1.0,
+     "0.95": 1.0
+    }
+   },
+   "contraction_by_param": {
+    "inj_number": 0.5254528322974592,
+    "oxyHeal": 0.7700455897052607,
+    "infectSpread": 0.8177895364076628,
+    "numRecurInj": 0.9451368997644394,
+    "numInfectRepeat": 0.7253855950186612
+   },
+   "forecast_coverage": {
+    "0.5": 0.6023391812865497,
+    "0.8": 0.8947368421052632,
+    "0.95": 0.9916457811194653
+   },
+   "forecast_n": 1197,
+   "brier": 0.14571504412776176,
+   "mortality_mean_forecast": 0.42290843077779494,
+   "mortality_observed": 0.325,
+   "ess_theta_median": 273.1141766454576,
+   "ess_theta_min": 57.341388943254195
+  },
+  "coverage80_gap": 0.1997368421052631,
+  "max_under80": 0.125
+ },
+ "all": [
+  {
+   "name": "synthetic/theta/tau=1.0/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 1.0,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.505,
+     "0.8": 0.715,
+     "0.95": 0.82
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.125,
+      "0.95": 0.15
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.575,
+      "0.8": 0.85,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.05680978308415976,
+     "oxyHeal": 1.0039430458417753,
+     "infectSpread": 0.840901548960411,
+     "numRecurInj": 1.0379248154857286,
+     "numInfectRepeat": 0.8128810883125099
+    },
+    "forecast_coverage": {
+     "0.5": 0.47117794486215536,
+     "0.8": 0.7635756056808688,
+     "0.95": 0.9047619047619048
+    },
+    "forecast_n": 1197,
+    "brier": 0.1548982654068629,
+    "mortality_mean_forecast": 0.4816273077251402,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0000278246172,
+    "ess_theta_min": 72.34918496137406
+   },
+   "coverage80_gap": 0.12142439431913132,
+   "max_under80": 0.675
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.505,
+     "0.8": 0.715,
+     "0.95": 0.82
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.125,
+      "0.95": 0.15
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.575,
+      "0.8": 0.85,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.05680978308415976,
+     "oxyHeal": 1.0039430458417753,
+     "infectSpread": 0.840901548960411,
+     "numRecurInj": 1.0379248154857286,
+     "numInfectRepeat": 0.8128810883125099
+    },
+    "forecast_coverage": {
+     "0.5": 0.3132832080200501,
+     "0.8": 0.5012531328320802,
+     "0.95": 0.6616541353383458
+    },
+    "forecast_n": 1197,
+    "brier": 0.1728364371724848,
+    "mortality_mean_forecast": 0.48599410193849407,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0000278246172,
+    "ess_theta_min": 72.34918496137406
+   },
+   "coverage80_gap": 0.38374686716791995,
+   "max_under80": 0.675
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.3/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.3,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.505,
+     "0.8": 0.715,
+     "0.95": 0.82
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.125,
+      "0.95": 0.15
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.575,
+      "0.8": 0.85,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.05680978308415976,
+     "oxyHeal": 1.0039430458417753,
+     "infectSpread": 0.840901548960411,
+     "numRecurInj": 1.0379248154857286,
+     "numInfectRepeat": 0.8128810883125099
+    },
+    "forecast_coverage": {
+     "0.5": 0.34502923976608185,
+     "0.8": 0.5321637426900585,
+     "0.95": 0.7151211361737677
+    },
+    "forecast_n": 1197,
+    "brier": 0.17229322231847388,
+    "mortality_mean_forecast": 0.49154763423656467,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0000278246172,
+    "ess_theta_min": 72.34918496137406
+   },
+   "coverage80_gap": 0.3528362573099416,
+   "max_under80": 0.675
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.1/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.1,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.505,
+     "0.8": 0.715,
+     "0.95": 0.82
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.125,
+      "0.95": 0.15
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.575,
+      "0.8": 0.85,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.05680978308415976,
+     "oxyHeal": 1.0039430458417753,
+     "infectSpread": 0.840901548960411,
+     "numRecurInj": 1.0379248154857286,
+     "numInfectRepeat": 0.8128810883125099
+    },
+    "forecast_coverage": {
+     "0.5": 0.3893065998329156,
+     "0.8": 0.620718462823726,
+     "0.95": 0.7744360902255639
+    },
+    "forecast_n": 1197,
+    "brier": 0.16251873542673864,
+    "mortality_mean_forecast": 0.4897087493563088,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0000278246172,
+    "ess_theta_min": 72.34918496137406
+   },
+   "coverage80_gap": 0.2642815371762741,
+   "max_under80": 0.675
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.03/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.03,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.505,
+     "0.8": 0.715,
+     "0.95": 0.82
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.125,
+      "0.95": 0.15
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.575,
+      "0.8": 0.85,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.05680978308415976,
+     "oxyHeal": 1.0039430458417753,
+     "infectSpread": 0.840901548960411,
+     "numRecurInj": 1.0379248154857286,
+     "numInfectRepeat": 0.8128810883125099
+    },
+    "forecast_coverage": {
+     "0.5": 0.41353383458646614,
+     "0.8": 0.706766917293233,
+     "0.95": 0.8546365914786967
+    },
+    "forecast_n": 1197,
+    "brier": 0.15649160400751816,
+    "mortality_mean_forecast": 0.4852847783999253,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0000278246172,
+    "ess_theta_min": 72.34918496137406
+   },
+   "coverage80_gap": 0.17823308270676708,
+   "max_under80": 0.675
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.01/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.01,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.505,
+     "0.8": 0.715,
+     "0.95": 0.82
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.125,
+      "0.95": 0.15
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.575,
+      "0.8": 0.85,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.05680978308415976,
+     "oxyHeal": 1.0039430458417753,
+     "infectSpread": 0.840901548960411,
+     "numRecurInj": 1.0379248154857286,
+     "numInfectRepeat": 0.8128810883125099
+    },
+    "forecast_coverage": {
+     "0.5": 0.45112781954887216,
+     "0.8": 0.7468671679197995,
+     "0.95": 0.8955722639933166
+    },
+    "forecast_n": 1197,
+    "brier": 0.1550967131443322,
+    "mortality_mean_forecast": 0.4840298584579953,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0000278246172,
+    "ess_theta_min": 72.34918496137406
+   },
+   "coverage80_gap": 0.13813283208020066,
+   "max_under80": 0.675
+  },
+  {
+   "name": "synthetic/theta/tau=0.3/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.3,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.595,
+     "0.8": 0.785,
+     "0.95": 0.895
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.275,
+      "0.8": 0.375,
+      "0.95": 0.525
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.95,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 0.95,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.33884313569198243,
+     "oxyHeal": 0.9157356975706271,
+     "infectSpread": 0.8734580175754589,
+     "numRecurInj": 1.019398429164226,
+     "numInfectRepeat": 0.8048255104119655
+    },
+    "forecast_coverage": {
+     "0.5": 0.5446950710108605,
+     "0.8": 0.8512949039264829,
+     "0.95": 0.9766081871345029
+    },
+    "forecast_n": 1197,
+    "brier": 0.14382578844855165,
+    "mortality_mean_forecast": 0.4580007406334726,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0430216440702,
+    "ess_theta_min": 72.9695503974485
+   },
+   "coverage80_gap": 0.06629490392648285,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.595,
+     "0.8": 0.785,
+     "0.95": 0.895
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.275,
+      "0.8": 0.375,
+      "0.95": 0.525
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.95,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 0.95,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.33884313569198243,
+     "oxyHeal": 0.9157356975706271,
+     "infectSpread": 0.8734580175754589,
+     "numRecurInj": 1.019398429164226,
+     "numInfectRepeat": 0.8048255104119655
+    },
+    "forecast_coverage": {
+     "0.5": 0.48370927318295737,
+     "0.8": 0.7786131996658312,
+     "0.95": 0.9348370927318296
+    },
+    "forecast_n": 1197,
+    "brier": 0.1410709419442596,
+    "mortality_mean_forecast": 0.46043862420260134,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0430216440702,
+    "ess_theta_min": 72.9695503974485
+   },
+   "coverage80_gap": 0.036386800334168856,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.3/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.3,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.595,
+     "0.8": 0.785,
+     "0.95": 0.895
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.275,
+      "0.8": 0.375,
+      "0.95": 0.525
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.95,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 0.95,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.33884313569198243,
+     "oxyHeal": 0.9157356975706271,
+     "infectSpread": 0.8734580175754589,
+     "numRecurInj": 1.019398429164226,
+     "numInfectRepeat": 0.8048255104119655
+    },
+    "forecast_coverage": {
+     "0.5": 0.49206349206349204,
+     "0.8": 0.7827903091060986,
+     "0.95": 0.9373433583959899
+    },
+    "forecast_n": 1197,
+    "brier": 0.14308657682814974,
+    "mortality_mean_forecast": 0.4620901707497304,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0430216440702,
+    "ess_theta_min": 72.9695503974485
+   },
+   "coverage80_gap": 0.032209690893901466,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.1/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.1,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.595,
+     "0.8": 0.785,
+     "0.95": 0.895
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.275,
+      "0.8": 0.375,
+      "0.95": 0.525
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.95,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 0.95,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.33884313569198243,
+     "oxyHeal": 0.9157356975706271,
+     "infectSpread": 0.8734580175754589,
+     "numRecurInj": 1.019398429164226,
+     "numInfectRepeat": 0.8048255104119655
+    },
+    "forecast_coverage": {
+     "0.5": 0.4954051796157059,
+     "0.8": 0.7986633249791144,
+     "0.95": 0.9423558897243107
+    },
+    "forecast_n": 1197,
+    "brier": 0.1436109526502103,
+    "mortality_mean_forecast": 0.4618126521243468,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0430216440702,
+    "ess_theta_min": 72.9695503974485
+   },
+   "coverage80_gap": 0.01633667502088565,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.03/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.03,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.595,
+     "0.8": 0.785,
+     "0.95": 0.895
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.275,
+      "0.8": 0.375,
+      "0.95": 0.525
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.95,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 0.95,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.33884313569198243,
+     "oxyHeal": 0.9157356975706271,
+     "infectSpread": 0.8734580175754589,
+     "numRecurInj": 1.019398429164226,
+     "numInfectRepeat": 0.8048255104119655
+    },
+    "forecast_coverage": {
+     "0.5": 0.5121136173767753,
+     "0.8": 0.8329156223893066,
+     "0.95": 0.9507101086048454
+    },
+    "forecast_n": 1197,
+    "brier": 0.14460846635298305,
+    "mortality_mean_forecast": 0.46139455100256643,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0430216440702,
+    "ess_theta_min": 72.9695503974485
+   },
+   "coverage80_gap": 0.04791562238930658,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.01/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.01,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.595,
+     "0.8": 0.785,
+     "0.95": 0.895
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.275,
+      "0.8": 0.375,
+      "0.95": 0.525
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.95,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 0.95,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.33884313569198243,
+     "oxyHeal": 0.9157356975706271,
+     "infectSpread": 0.8734580175754589,
+     "numRecurInj": 1.019398429164226,
+     "numInfectRepeat": 0.8048255104119655
+    },
+    "forecast_coverage": {
+     "0.5": 0.5246449456975772,
+     "0.8": 0.8487886382623224,
+     "0.95": 0.960735171261487
+    },
+    "forecast_n": 1197,
+    "brier": 0.1447049324811204,
+    "mortality_mean_forecast": 0.4607383758459346,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.0430216440702,
+    "ess_theta_min": 72.9695503974485
+   },
+   "coverage80_gap": 0.0637886382623224,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/theta/tau=0.1/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.1,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.68,
+     "0.8": 0.905,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.75,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.725,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.5254528322974592,
+     "oxyHeal": 0.7700455897052607,
+     "infectSpread": 0.8177895364076628,
+     "numRecurInj": 0.9451368997644394,
+     "numInfectRepeat": 0.7253855950186612
+    },
+    "forecast_coverage": {
+     "0.5": 0.6023391812865497,
+     "0.8": 0.8947368421052632,
+     "0.95": 0.9916457811194653
+    },
+    "forecast_n": 1197,
+    "brier": 0.14571504412776176,
+    "mortality_mean_forecast": 0.42290843077779494,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 273.1141766454576,
+    "ess_theta_min": 57.341388943254195
+   },
+   "coverage80_gap": 0.1997368421052631,
+   "max_under80": 0.125
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.68,
+     "0.8": 0.905,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.75,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.725,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.5254528322974592,
+     "oxyHeal": 0.7700455897052607,
+     "infectSpread": 0.8177895364076628,
+     "numRecurInj": 0.9451368997644394,
+     "numInfectRepeat": 0.7253855950186612
+    },
+    "forecast_coverage": {
+     "0.5": 0.5714285714285714,
+     "0.8": 0.8863826232247285,
+     "0.95": 0.9774436090225563
+    },
+    "forecast_n": 1197,
+    "brier": 0.1460055958401017,
+    "mortality_mean_forecast": 0.4247499173769539,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 273.1141766454576,
+    "ess_theta_min": 57.341388943254195
+   },
+   "coverage80_gap": 0.19138262322472843,
+   "max_under80": 0.125
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.3/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.3,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.68,
+     "0.8": 0.905,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.75,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.725,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.5254528322974592,
+     "oxyHeal": 0.7700455897052607,
+     "infectSpread": 0.8177895364076628,
+     "numRecurInj": 0.9451368997644394,
+     "numInfectRepeat": 0.7253855950186612
+    },
+    "forecast_coverage": {
+     "0.5": 0.5714285714285714,
+     "0.8": 0.885547201336675,
+     "0.95": 0.9774436090225563
+    },
+    "forecast_n": 1197,
+    "brier": 0.14635994557437876,
+    "mortality_mean_forecast": 0.4250053243770447,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 273.1141766454576,
+    "ess_theta_min": 57.341388943254195
+   },
+   "coverage80_gap": 0.1905472013366749,
+   "max_under80": 0.125
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.1/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.1,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.68,
+     "0.8": 0.905,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.75,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.725,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.5254528322974592,
+     "oxyHeal": 0.7700455897052607,
+     "infectSpread": 0.8177895364076628,
+     "numRecurInj": 0.9451368997644394,
+     "numInfectRepeat": 0.7253855950186612
+    },
+    "forecast_coverage": {
+     "0.5": 0.5697577276524645,
+     "0.8": 0.885547201336675,
+     "0.95": 0.9782790309106099
+    },
+    "forecast_n": 1197,
+    "brier": 0.14660396739732676,
+    "mortality_mean_forecast": 0.42558347120161716,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 273.1141766454576,
+    "ess_theta_min": 57.341388943254195
+   },
+   "coverage80_gap": 0.1905472013366749,
+   "max_under80": 0.125
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.03/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.03,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.68,
+     "0.8": 0.905,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.75,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.725,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.5254528322974592,
+     "oxyHeal": 0.7700455897052607,
+     "infectSpread": 0.8177895364076628,
+     "numRecurInj": 0.9451368997644394,
+     "numInfectRepeat": 0.7253855950186612
+    },
+    "forecast_coverage": {
+     "0.5": 0.5873015873015873,
+     "0.8": 0.885547201336675,
+     "0.95": 0.9824561403508771
+    },
+    "forecast_n": 1197,
+    "brier": 0.14648201928206653,
+    "mortality_mean_forecast": 0.42598882182891495,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 273.1141766454576,
+    "ess_theta_min": 57.341388943254195
+   },
+   "coverage80_gap": 0.1905472013366749,
+   "max_under80": 0.125
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.01/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.01,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.68,
+     "0.8": 0.905,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.75,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.675,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.725,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.5254528322974592,
+     "oxyHeal": 0.7700455897052607,
+     "infectSpread": 0.8177895364076628,
+     "numRecurInj": 0.9451368997644394,
+     "numInfectRepeat": 0.7253855950186612
+    },
+    "forecast_coverage": {
+     "0.5": 0.5939849624060151,
+     "0.8": 0.8872180451127819,
+     "0.95": 0.9866332497911445
+    },
+    "forecast_n": 1197,
+    "brier": 0.14635703352968604,
+    "mortality_mean_forecast": 0.4254856946640594,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 273.1141766454576,
+    "ess_theta_min": 57.341388943254195
+   },
+   "coverage80_gap": 0.19221804511278184,
+   "max_under80": 0.125
+  },
+  {
+   "name": "synthetic/theta/tau=0.05/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.05,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.775,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.27059058202454744,
+     "oxyHeal": 0.837791621025661,
+     "infectSpread": 0.8105673259684281,
+     "numRecurInj": 0.9563712794141532,
+     "numInfectRepeat": 0.727935039599651
+    },
+    "forecast_coverage": {
+     "0.5": 0.6240601503759399,
+     "0.8": 0.9206349206349206,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.1505610831847355,
+    "mortality_mean_forecast": 0.40831275962870206,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 411.3771543410012,
+    "ess_theta_min": 89.50949130309854
+   },
+   "coverage80_gap": 0.24063492063492053,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.775,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.27059058202454744,
+     "oxyHeal": 0.837791621025661,
+     "infectSpread": 0.8105673259684281,
+     "numRecurInj": 0.9563712794141532,
+     "numInfectRepeat": 0.727935039599651
+    },
+    "forecast_coverage": {
+     "0.5": 0.6006683375104428,
+     "0.8": 0.9022556390977443,
+     "0.95": 0.9832915622389307
+    },
+    "forecast_n": 1197,
+    "brier": 0.15032607564614286,
+    "mortality_mean_forecast": 0.4093797774670917,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 411.3771543410012,
+    "ess_theta_min": 89.50949130309854
+   },
+   "coverage80_gap": 0.22225563909774426,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.3/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.3,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.775,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.27059058202454744,
+     "oxyHeal": 0.837791621025661,
+     "infectSpread": 0.8105673259684281,
+     "numRecurInj": 0.9563712794141532,
+     "numInfectRepeat": 0.727935039599651
+    },
+    "forecast_coverage": {
+     "0.5": 0.5981620718462823,
+     "0.8": 0.9022556390977443,
+     "0.95": 0.9832915622389307
+    },
+    "forecast_n": 1197,
+    "brier": 0.1504395174432202,
+    "mortality_mean_forecast": 0.4094683784143909,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 411.3771543410012,
+    "ess_theta_min": 89.50949130309854
+   },
+   "coverage80_gap": 0.22225563909774426,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.1/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.1,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.775,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.27059058202454744,
+     "oxyHeal": 0.837791621025661,
+     "infectSpread": 0.8105673259684281,
+     "numRecurInj": 0.9563712794141532,
+     "numInfectRepeat": 0.727935039599651
+    },
+    "forecast_coverage": {
+     "0.5": 0.5939849624060151,
+     "0.8": 0.9030910609857978,
+     "0.95": 0.9841269841269841
+    },
+    "forecast_n": 1197,
+    "brier": 0.1505695998153532,
+    "mortality_mean_forecast": 0.40996732924739143,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 411.3771543410012,
+    "ess_theta_min": 89.50949130309854
+   },
+   "coverage80_gap": 0.22309106098579778,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.03/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.03,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.775,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.27059058202454744,
+     "oxyHeal": 0.837791621025661,
+     "infectSpread": 0.8105673259684281,
+     "numRecurInj": 0.9563712794141532,
+     "numInfectRepeat": 0.727935039599651
+    },
+    "forecast_coverage": {
+     "0.5": 0.6040100250626567,
+     "0.8": 0.908939014202172,
+     "0.95": 0.985797827903091
+    },
+    "forecast_n": 1197,
+    "brier": 0.15068100667321271,
+    "mortality_mean_forecast": 0.41075231460704414,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 411.3771543410012,
+    "ess_theta_min": 89.50949130309854
+   },
+   "coverage80_gap": 0.228939014202172,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.01/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.01,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.775,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.27059058202454744,
+     "oxyHeal": 0.837791621025661,
+     "infectSpread": 0.8105673259684281,
+     "numRecurInj": 0.9563712794141532,
+     "numInfectRepeat": 0.727935039599651
+    },
+    "forecast_coverage": {
+     "0.5": 0.6106934001670844,
+     "0.8": 0.9139515455304928,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.15083858474990888,
+    "mortality_mean_forecast": 0.4106044459356742,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 411.3771543410012,
+    "ess_theta_min": 89.50949130309854
+   },
+   "coverage80_gap": 0.2339515455304928,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/theta/tau=0.02/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.02,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.665,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.31497543599844285,
+     "oxyHeal": 0.9247877016720002,
+     "infectSpread": 0.8487229517272891,
+     "numRecurInj": 0.9773265797494197,
+     "numInfectRepeat": 0.7935950782303341
+    },
+    "forecast_coverage": {
+     "0.5": 0.6257309941520468,
+     "0.8": 0.9365079365079365,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.155890459844446,
+    "mortality_mean_forecast": 0.39934255943109204,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 945.1592636679018,
+    "ess_theta_min": 193.06889909996445
+   },
+   "coverage80_gap": 0.26650793650793647,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.665,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.31497543599844285,
+     "oxyHeal": 0.9247877016720002,
+     "infectSpread": 0.8487229517272891,
+     "numRecurInj": 0.9773265797494197,
+     "numInfectRepeat": 0.7935950782303341
+    },
+    "forecast_coverage": {
+     "0.5": 0.6157059314954052,
+     "0.8": 0.9172932330827067,
+     "0.95": 0.9883040935672515
+    },
+    "forecast_n": 1197,
+    "brier": 0.1544174787582865,
+    "mortality_mean_forecast": 0.39899265435349396,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 945.1592636679018,
+    "ess_theta_min": 193.06889909996445
+   },
+   "coverage80_gap": 0.24729323308270668,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.3/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.3,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.665,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.31497543599844285,
+     "oxyHeal": 0.9247877016720002,
+     "infectSpread": 0.8487229517272891,
+     "numRecurInj": 0.9773265797494197,
+     "numInfectRepeat": 0.7935950782303341
+    },
+    "forecast_coverage": {
+     "0.5": 0.6173767752715121,
+     "0.8": 0.9206349206349206,
+     "0.95": 0.9883040935672515
+    },
+    "forecast_n": 1197,
+    "brier": 0.15444063199794636,
+    "mortality_mean_forecast": 0.3990231952794006,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 945.1592636679018,
+    "ess_theta_min": 193.06889909996445
+   },
+   "coverage80_gap": 0.25063492063492054,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.1/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.1,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.665,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.31497543599844285,
+     "oxyHeal": 0.9247877016720002,
+     "infectSpread": 0.8487229517272891,
+     "numRecurInj": 0.9773265797494197,
+     "numInfectRepeat": 0.7935950782303341
+    },
+    "forecast_coverage": {
+     "0.5": 0.6182121971595655,
+     "0.8": 0.923141186299081,
+     "0.95": 0.9891395154553049
+    },
+    "forecast_n": 1197,
+    "brier": 0.15466130355412308,
+    "mortality_mean_forecast": 0.3993358293144599,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 945.1592636679018,
+    "ess_theta_min": 193.06889909996445
+   },
+   "coverage80_gap": 0.253141186299081,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.03/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.03,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.665,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.31497543599844285,
+     "oxyHeal": 0.9247877016720002,
+     "infectSpread": 0.8487229517272891,
+     "numRecurInj": 0.9773265797494197,
+     "numInfectRepeat": 0.7935950782303341
+    },
+    "forecast_coverage": {
+     "0.5": 0.6173767752715121,
+     "0.8": 0.9264828738512949,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.15526171450911802,
+    "mortality_mean_forecast": 0.4005125485467292,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 945.1592636679018,
+    "ess_theta_min": 193.06889909996445
+   },
+   "coverage80_gap": 0.25648287385129487,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.01/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.01,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.665,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.31497543599844285,
+     "oxyHeal": 0.9247877016720002,
+     "infectSpread": 0.8487229517272891,
+     "numRecurInj": 0.9773265797494197,
+     "numInfectRepeat": 0.7935950782303341
+    },
+    "forecast_coverage": {
+     "0.5": 0.6215538847117794,
+     "0.8": 0.9289891395154553,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.1557839936853977,
+    "mortality_mean_forecast": 0.4011159891449907,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 945.1592636679018,
+    "ess_theta_min": 193.06889909996445
+   },
+   "coverage80_gap": 0.2589891395154552,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/theta/tau=0.01/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.01,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.64,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.65,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.42089428143744295,
+     "oxyHeal": 0.9562407986354021,
+     "infectSpread": 0.8833193505056613,
+     "numRecurInj": 0.9863915057062916,
+     "numInfectRepeat": 0.8452150530828053
+    },
+    "forecast_coverage": {
+     "0.5": 0.6307435254803676,
+     "0.8": 0.9390142021720969,
+     "0.95": 0.9891395154553049
+    },
+    "forecast_n": 1197,
+    "brier": 0.1594332526301207,
+    "mortality_mean_forecast": 0.40040042507011514,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1603.260570989205,
+    "ess_theta_min": 334.9208301839138
+   },
+   "coverage80_gap": 0.2690142021720968,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.64,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.65,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.42089428143744295,
+     "oxyHeal": 0.9562407986354021,
+     "infectSpread": 0.8833193505056613,
+     "numRecurInj": 0.9863915057062916,
+     "numInfectRepeat": 0.8452150530828053
+    },
+    "forecast_coverage": {
+     "0.5": 0.6173767752715121,
+     "0.8": 0.9273182957393483,
+     "0.95": 0.9891395154553049
+    },
+    "forecast_n": 1197,
+    "brier": 0.15710408806779427,
+    "mortality_mean_forecast": 0.3984920944454226,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1603.260570989205,
+    "ess_theta_min": 334.9208301839138
+   },
+   "coverage80_gap": 0.2573182957393483,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.3/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.3,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.64,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.65,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.42089428143744295,
+     "oxyHeal": 0.9562407986354021,
+     "infectSpread": 0.8833193505056613,
+     "numRecurInj": 0.9863915057062916,
+     "numInfectRepeat": 0.8452150530828053
+    },
+    "forecast_coverage": {
+     "0.5": 0.6165413533834586,
+     "0.8": 0.9264828738512949,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.15710671911736013,
+    "mortality_mean_forecast": 0.39852014546824255,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1603.260570989205,
+    "ess_theta_min": 334.9208301839138
+   },
+   "coverage80_gap": 0.25648287385129487,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.1/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.1,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.64,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.65,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.42089428143744295,
+     "oxyHeal": 0.9562407986354021,
+     "infectSpread": 0.8833193505056613,
+     "numRecurInj": 0.9863915057062916,
+     "numInfectRepeat": 0.8452150530828053
+    },
+    "forecast_coverage": {
+     "0.5": 0.6165413533834586,
+     "0.8": 0.9264828738512949,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.15738110181721704,
+    "mortality_mean_forecast": 0.39876976281575977,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1603.260570989205,
+    "ess_theta_min": 334.9208301839138
+   },
+   "coverage80_gap": 0.25648287385129487,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.03/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.03,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.64,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.65,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.42089428143744295,
+     "oxyHeal": 0.9562407986354021,
+     "infectSpread": 0.8833193505056613,
+     "numRecurInj": 0.9863915057062916,
+     "numInfectRepeat": 0.8452150530828053
+    },
+    "forecast_coverage": {
+     "0.5": 0.6173767752715121,
+     "0.8": 0.924812030075188,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.158304782302204,
+    "mortality_mean_forecast": 0.40026507890132146,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1603.260570989205,
+    "ess_theta_min": 334.9208301839138
+   },
+   "coverage80_gap": 0.25481203007518793,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.01/floor=0.25",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.01,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.64,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.65,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.42089428143744295,
+     "oxyHeal": 0.9562407986354021,
+     "infectSpread": 0.8833193505056613,
+     "numRecurInj": 0.9863915057062916,
+     "numInfectRepeat": 0.8452150530828053
+    },
+    "forecast_coverage": {
+     "0.5": 0.6248955722639933,
+     "0.8": 0.9281537176274018,
+     "0.95": 0.9891395154553049
+    },
+    "forecast_n": 1197,
+    "brier": 0.15910411271432712,
+    "mortality_mean_forecast": 0.4016377856696856,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1603.260570989205,
+    "ess_theta_min": 334.9208301839138
+   },
+   "coverage80_gap": 0.2581537176274018,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/theta/tau=1.0/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 1.0,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.5,
+     "0.8": 0.705,
+     "0.95": 0.815
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.1,
+      "0.95": 0.125
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.75,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.55,
+      "0.8": 0.8,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.051702119935222245,
+     "oxyHeal": 1.0121816576487022,
+     "infectSpread": 0.8284447129284033,
+     "numRecurInj": 1.041113337185901,
+     "numInfectRepeat": 0.7936684544996759
+    },
+    "forecast_coverage": {
+     "0.5": 0.4878863826232247,
+     "0.8": 0.7786131996658312,
+     "0.95": 0.924812030075188
+    },
+    "forecast_n": 1197,
+    "brier": 0.16209246412729889,
+    "mortality_mean_forecast": 0.47537565918573393,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.00025947631457,
+    "ess_theta_min": 441.9999999999997
+   },
+   "coverage80_gap": 0.11638680033416893,
+   "max_under80": 0.7000000000000001
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.5,
+     "0.8": 0.705,
+     "0.95": 0.815
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.1,
+      "0.95": 0.125
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.75,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.55,
+      "0.8": 0.8,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.051702119935222245,
+     "oxyHeal": 1.0121816576487022,
+     "infectSpread": 0.8284447129284033,
+     "numRecurInj": 1.041113337185901,
+     "numInfectRepeat": 0.7936684544996759
+    },
+    "forecast_coverage": {
+     "0.5": 0.35505430242272346,
+     "0.8": 0.5338345864661654,
+     "0.95": 0.706766917293233
+    },
+    "forecast_n": 1197,
+    "brier": 0.1758644114159491,
+    "mortality_mean_forecast": 0.4734535006443523,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.00025947631457,
+    "ess_theta_min": 441.9999999999997
+   },
+   "coverage80_gap": 0.3611654135338347,
+   "max_under80": 0.7000000000000001
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.3/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.3,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.5,
+     "0.8": 0.705,
+     "0.95": 0.815
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.1,
+      "0.95": 0.125
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.75,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.55,
+      "0.8": 0.8,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.051702119935222245,
+     "oxyHeal": 1.0121816576487022,
+     "infectSpread": 0.8284447129284033,
+     "numRecurInj": 1.041113337185901,
+     "numInfectRepeat": 0.7936684544996759
+    },
+    "forecast_coverage": {
+     "0.5": 0.38011695906432746,
+     "0.8": 0.5664160401002506,
+     "0.95": 0.7535505430242272
+    },
+    "forecast_n": 1197,
+    "brier": 0.17540510661977454,
+    "mortality_mean_forecast": 0.479378996335125,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.00025947631457,
+    "ess_theta_min": 441.9999999999997
+   },
+   "coverage80_gap": 0.32858395989974953,
+   "max_under80": 0.7000000000000001
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.1/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.1,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.5,
+     "0.8": 0.705,
+     "0.95": 0.815
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.1,
+      "0.95": 0.125
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.75,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.55,
+      "0.8": 0.8,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.051702119935222245,
+     "oxyHeal": 1.0121816576487022,
+     "infectSpread": 0.8284447129284033,
+     "numRecurInj": 1.041113337185901,
+     "numInfectRepeat": 0.7936684544996759
+    },
+    "forecast_coverage": {
+     "0.5": 0.4118629908103592,
+     "0.8": 0.6232247284878863,
+     "0.95": 0.810359231411863
+    },
+    "forecast_n": 1197,
+    "brier": 0.1672951034503194,
+    "mortality_mean_forecast": 0.4800881386836787,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.00025947631457,
+    "ess_theta_min": 441.9999999999997
+   },
+   "coverage80_gap": 0.2717752715121138,
+   "max_under80": 0.7000000000000001
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.03/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.03,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.5,
+     "0.8": 0.705,
+     "0.95": 0.815
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.1,
+      "0.95": 0.125
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.75,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.55,
+      "0.8": 0.8,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.051702119935222245,
+     "oxyHeal": 1.0121816576487022,
+     "infectSpread": 0.8284447129284033,
+     "numRecurInj": 1.041113337185901,
+     "numInfectRepeat": 0.7936684544996759
+    },
+    "forecast_coverage": {
+     "0.5": 0.41687552213868,
+     "0.8": 0.7192982456140351,
+     "0.95": 0.8947368421052632
+    },
+    "forecast_n": 1197,
+    "brier": 0.16304102841719678,
+    "mortality_mean_forecast": 0.47833412464834185,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.00025947631457,
+    "ess_theta_min": 441.9999999999997
+   },
+   "coverage80_gap": 0.17570175438596503,
+   "max_under80": 0.7000000000000001
+  },
+  {
+   "name": "synthetic/run/tau=1.0/tau_run=0.01/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 0.01,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.5,
+     "0.8": 0.705,
+     "0.95": 0.815
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.075,
+      "0.8": 0.1,
+      "0.95": 0.125
+     },
+     "oxyHeal": {
+      "0.5": 0.55,
+      "0.8": 0.75,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 0.875,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.55,
+      "0.8": 0.8,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.051702119935222245,
+     "oxyHeal": 1.0121816576487022,
+     "infectSpread": 0.8284447129284033,
+     "numRecurInj": 1.041113337185901,
+     "numInfectRepeat": 0.7936684544996759
+    },
+    "forecast_coverage": {
+     "0.5": 0.4644945697577276,
+     "0.8": 0.7619047619047619,
+     "0.95": 0.9122807017543859
+    },
+    "forecast_n": 1197,
+    "brier": 0.1623679504412348,
+    "mortality_mean_forecast": 0.47755896221661853,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.00025947631457,
+    "ess_theta_min": 441.9999999999997
+   },
+   "coverage80_gap": 0.13309523809523827,
+   "max_under80": 0.7000000000000001
+  },
+  {
+   "name": "synthetic/theta/tau=0.3/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.3,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.59,
+     "0.8": 0.785,
+     "0.95": 0.905
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.25,
+      "0.8": 0.375,
+      "0.95": 0.55
+     },
+     "oxyHeal": {
+      "0.5": 0.575,
+      "0.8": 0.7,
+      "0.95": 0.975
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3352394894421825,
+     "oxyHeal": 0.9409920445502917,
+     "infectSpread": 0.8849548136612178,
+     "numRecurInj": 1.0265016200690673,
+     "numInfectRepeat": 0.8311963893015969
+    },
+    "forecast_coverage": {
+     "0.5": 0.5538847117794486,
+     "0.8": 0.8680033416875522,
+     "0.95": 0.9741019214703425
+    },
+    "forecast_n": 1197,
+    "brier": 0.14535671560094915,
+    "mortality_mean_forecast": 0.45665849658123286,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.2827787266416,
+    "ess_theta_min": 124.60653288587551
+   },
+   "coverage80_gap": 0.08300334168755219,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.59,
+     "0.8": 0.785,
+     "0.95": 0.905
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.25,
+      "0.8": 0.375,
+      "0.95": 0.55
+     },
+     "oxyHeal": {
+      "0.5": 0.575,
+      "0.8": 0.7,
+      "0.95": 0.975
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3352394894421825,
+     "oxyHeal": 0.9409920445502917,
+     "infectSpread": 0.8849548136612178,
+     "numRecurInj": 1.0265016200690673,
+     "numInfectRepeat": 0.8311963893015969
+    },
+    "forecast_coverage": {
+     "0.5": 0.5054302422723476,
+     "0.8": 0.8036758563074352,
+     "0.95": 0.9423558897243107
+    },
+    "forecast_n": 1197,
+    "brier": 0.14431497698750054,
+    "mortality_mean_forecast": 0.4589183212112332,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.2827787266416,
+    "ess_theta_min": 124.60653288587551
+   },
+   "coverage80_gap": 0.01867585630743518,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.3/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.3,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.59,
+     "0.8": 0.785,
+     "0.95": 0.905
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.25,
+      "0.8": 0.375,
+      "0.95": 0.55
+     },
+     "oxyHeal": {
+      "0.5": 0.575,
+      "0.8": 0.7,
+      "0.95": 0.975
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3352394894421825,
+     "oxyHeal": 0.9409920445502917,
+     "infectSpread": 0.8849548136612178,
+     "numRecurInj": 1.0265016200690673,
+     "numInfectRepeat": 0.8311963893015969
+    },
+    "forecast_coverage": {
+     "0.5": 0.504594820384294,
+     "0.8": 0.8070175438596491,
+     "0.95": 0.9448621553884712
+    },
+    "forecast_n": 1197,
+    "brier": 0.14573631354085076,
+    "mortality_mean_forecast": 0.4600865473856636,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.2827787266416,
+    "ess_theta_min": 124.60653288587551
+   },
+   "coverage80_gap": 0.022017543859649047,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.1/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.1,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.59,
+     "0.8": 0.785,
+     "0.95": 0.905
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.25,
+      "0.8": 0.375,
+      "0.95": 0.55
+     },
+     "oxyHeal": {
+      "0.5": 0.575,
+      "0.8": 0.7,
+      "0.95": 0.975
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3352394894421825,
+     "oxyHeal": 0.9409920445502917,
+     "infectSpread": 0.8849548136612178,
+     "numRecurInj": 1.0265016200690673,
+     "numInfectRepeat": 0.8311963893015969
+    },
+    "forecast_coverage": {
+     "0.5": 0.5146198830409356,
+     "0.8": 0.8220551378446115,
+     "0.95": 0.9515455304928989
+    },
+    "forecast_n": 1197,
+    "brier": 0.1457116394535222,
+    "mortality_mean_forecast": 0.45988646612418094,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.2827787266416,
+    "ess_theta_min": 124.60653288587551
+   },
+   "coverage80_gap": 0.03705513784461145,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.03/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.03,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.59,
+     "0.8": 0.785,
+     "0.95": 0.905
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.25,
+      "0.8": 0.375,
+      "0.95": 0.55
+     },
+     "oxyHeal": {
+      "0.5": 0.575,
+      "0.8": 0.7,
+      "0.95": 0.975
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3352394894421825,
+     "oxyHeal": 0.9409920445502917,
+     "infectSpread": 0.8849548136612178,
+     "numRecurInj": 1.0265016200690673,
+     "numInfectRepeat": 0.8311963893015969
+    },
+    "forecast_coverage": {
+     "0.5": 0.5304928989139516,
+     "0.8": 0.8454469507101086,
+     "0.95": 0.9582289055973267
+    },
+    "forecast_n": 1197,
+    "brier": 0.14611377434564501,
+    "mortality_mean_forecast": 0.4596405116504041,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.2827787266416,
+    "ess_theta_min": 124.60653288587551
+   },
+   "coverage80_gap": 0.06044695071010853,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/run/tau=0.3/tau_run=0.01/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.01,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.59,
+     "0.8": 0.785,
+     "0.95": 0.905
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.25,
+      "0.8": 0.375,
+      "0.95": 0.55
+     },
+     "oxyHeal": {
+      "0.5": 0.575,
+      "0.8": 0.7,
+      "0.95": 0.975
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3352394894421825,
+     "oxyHeal": 0.9409920445502917,
+     "infectSpread": 0.8849548136612178,
+     "numRecurInj": 1.0265016200690673,
+     "numInfectRepeat": 0.8311963893015969
+    },
+    "forecast_coverage": {
+     "0.5": 0.5413533834586466,
+     "0.8": 0.8654970760233918,
+     "0.95": 0.9624060150375939
+    },
+    "forecast_n": 1197,
+    "brier": 0.14625228313085614,
+    "mortality_mean_forecast": 0.45922223546929963,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 442.2827787266416,
+    "ess_theta_min": 124.60653288587551
+   },
+   "coverage80_gap": 0.08049707602339173,
+   "max_under80": 0.42500000000000004
+  },
+  {
+   "name": "synthetic/theta/tau=0.1/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.1,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.675,
+     "0.8": 0.91,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.523755868565744,
+     "oxyHeal": 0.7900095922026409,
+     "infectSpread": 0.8240289530613335,
+     "numRecurInj": 0.9524524512647179,
+     "numInfectRepeat": 0.7389280512984815
+    },
+    "forecast_coverage": {
+     "0.5": 0.6098579782790309,
+     "0.8": 0.8989139515455304,
+     "0.95": 0.9908103592314118
+    },
+    "forecast_n": 1197,
+    "brier": 0.14730202103611495,
+    "mortality_mean_forecast": 0.42688665240496404,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 331.2879798975853,
+    "ess_theta_min": 61.581470050631005
+   },
+   "coverage80_gap": 0.20891395154553039,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.675,
+     "0.8": 0.91,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.523755868565744,
+     "oxyHeal": 0.7900095922026409,
+     "infectSpread": 0.8240289530613335,
+     "numRecurInj": 0.9524524512647179,
+     "numInfectRepeat": 0.7389280512984815
+    },
+    "forecast_coverage": {
+     "0.5": 0.5806182121971596,
+     "0.8": 0.8880534670008354,
+     "0.95": 0.9774436090225563
+    },
+    "forecast_n": 1197,
+    "brier": 0.14791173934918206,
+    "mortality_mean_forecast": 0.42872232867726867,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 331.2879798975853,
+    "ess_theta_min": 61.581470050631005
+   },
+   "coverage80_gap": 0.19805346700083537,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.3/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.3,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.675,
+     "0.8": 0.91,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.523755868565744,
+     "oxyHeal": 0.7900095922026409,
+     "infectSpread": 0.8240289530613335,
+     "numRecurInj": 0.9524524512647179,
+     "numInfectRepeat": 0.7389280512984815
+    },
+    "forecast_coverage": {
+     "0.5": 0.5781119465329991,
+     "0.8": 0.8913951545530493,
+     "0.95": 0.9774436090225563
+    },
+    "forecast_n": 1197,
+    "brier": 0.1481544702037932,
+    "mortality_mean_forecast": 0.42887304989292885,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 331.2879798975853,
+    "ess_theta_min": 61.581470050631005
+   },
+   "coverage80_gap": 0.20139515455304924,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.1/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.1,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.675,
+     "0.8": 0.91,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.523755868565744,
+     "oxyHeal": 0.7900095922026409,
+     "infectSpread": 0.8240289530613335,
+     "numRecurInj": 0.9524524512647179,
+     "numInfectRepeat": 0.7389280512984815
+    },
+    "forecast_coverage": {
+     "0.5": 0.5797827903091061,
+     "0.8": 0.8872180451127819,
+     "0.95": 0.9791144527986633
+    },
+    "forecast_n": 1197,
+    "brier": 0.1482528068026931,
+    "mortality_mean_forecast": 0.4293837089387278,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 331.2879798975853,
+    "ess_theta_min": 61.581470050631005
+   },
+   "coverage80_gap": 0.19721804511278185,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.03/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.03,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.675,
+     "0.8": 0.91,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.523755868565744,
+     "oxyHeal": 0.7900095922026409,
+     "infectSpread": 0.8240289530613335,
+     "numRecurInj": 0.9524524512647179,
+     "numInfectRepeat": 0.7389280512984815
+    },
+    "forecast_coverage": {
+     "0.5": 0.5889724310776943,
+     "0.8": 0.8905597326649958,
+     "0.95": 0.9824561403508771
+    },
+    "forecast_n": 1197,
+    "brier": 0.14804595885652944,
+    "mortality_mean_forecast": 0.4298249120047279,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 331.2879798975853,
+    "ess_theta_min": 61.581470050631005
+   },
+   "coverage80_gap": 0.20055973266499572,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.1/tau_run=0.01/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.01,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.675,
+     "0.8": 0.91,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.875,
+      "0.95": 0.95
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.7,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.523755868565744,
+     "oxyHeal": 0.7900095922026409,
+     "infectSpread": 0.8240289530613335,
+     "numRecurInj": 0.9524524512647179,
+     "numInfectRepeat": 0.7389280512984815
+    },
+    "forecast_coverage": {
+     "0.5": 0.6031746031746031,
+     "0.8": 0.8939014202172096,
+     "0.95": 0.9866332497911445
+    },
+    "forecast_n": 1197,
+    "brier": 0.14794085087904402,
+    "mortality_mean_forecast": 0.42940697683639284,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 331.2879798975853,
+    "ess_theta_min": 61.581470050631005
+   },
+   "coverage80_gap": 0.20390142021720958,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/theta/tau=0.05/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.05,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.655,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.29087507530252815,
+     "oxyHeal": 0.8546301747600877,
+     "infectSpread": 0.8194423100027262,
+     "numRecurInj": 0.9617905820729714,
+     "numInfectRepeat": 0.7426468759908523
+    },
+    "forecast_coverage": {
+     "0.5": 0.6282372598162071,
+     "0.8": 0.9172932330827067,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.1518333009727799,
+    "mortality_mean_forecast": 0.414664788188119,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 514.1965140997823,
+    "ess_theta_min": 97.66241296088715
+   },
+   "coverage80_gap": 0.23729323308270667,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.655,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.29087507530252815,
+     "oxyHeal": 0.8546301747600877,
+     "infectSpread": 0.8194423100027262,
+     "numRecurInj": 0.9617905820729714,
+     "numInfectRepeat": 0.7426468759908523
+    },
+    "forecast_coverage": {
+     "0.5": 0.6090225563909775,
+     "0.8": 0.9064327485380117,
+     "0.95": 0.9824561403508771
+    },
+    "forecast_n": 1197,
+    "brier": 0.1514814327998888,
+    "mortality_mean_forecast": 0.41555626249785294,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 514.1965140997823,
+    "ess_theta_min": 97.66241296088715
+   },
+   "coverage80_gap": 0.22643274853801165,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.3/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.3,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.655,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.29087507530252815,
+     "oxyHeal": 0.8546301747600877,
+     "infectSpread": 0.8194423100027262,
+     "numRecurInj": 0.9617905820729714,
+     "numInfectRepeat": 0.7426468759908523
+    },
+    "forecast_coverage": {
+     "0.5": 0.6056808688387636,
+     "0.8": 0.9064327485380117,
+     "0.95": 0.9832915622389307
+    },
+    "forecast_n": 1197,
+    "brier": 0.1515659467701113,
+    "mortality_mean_forecast": 0.415612797811583,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 514.1965140997823,
+    "ess_theta_min": 97.66241296088715
+   },
+   "coverage80_gap": 0.22643274853801165,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.1/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.1,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.655,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.29087507530252815,
+     "oxyHeal": 0.8546301747600877,
+     "infectSpread": 0.8194423100027262,
+     "numRecurInj": 0.9617905820729714,
+     "numInfectRepeat": 0.7426468759908523
+    },
+    "forecast_coverage": {
+     "0.5": 0.6015037593984962,
+     "0.8": 0.9055973266499582,
+     "0.95": 0.9841269841269841
+    },
+    "forecast_n": 1197,
+    "brier": 0.15172540594286285,
+    "mortality_mean_forecast": 0.4160443877547097,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 514.1965140997823,
+    "ess_theta_min": 97.66241296088715
+   },
+   "coverage80_gap": 0.22559732664995813,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.03/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.03,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.655,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.29087507530252815,
+     "oxyHeal": 0.8546301747600877,
+     "infectSpread": 0.8194423100027262,
+     "numRecurInj": 0.9617905820729714,
+     "numInfectRepeat": 0.7426468759908523
+    },
+    "forecast_coverage": {
+     "0.5": 0.6123642439431913,
+     "0.8": 0.9139515455304928,
+     "0.95": 0.9832915622389307
+    },
+    "forecast_n": 1197,
+    "brier": 0.15193002500275624,
+    "mortality_mean_forecast": 0.41688784676852464,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 514.1965140997823,
+    "ess_theta_min": 97.66241296088715
+   },
+   "coverage80_gap": 0.2339515455304928,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/run/tau=0.05/tau_run=0.01/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.01,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.655,
+     "0.8": 0.92,
+     "0.95": 0.985
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.725,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.5,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.29087507530252815,
+     "oxyHeal": 0.8546301747600877,
+     "infectSpread": 0.8194423100027262,
+     "numRecurInj": 0.9617905820729714,
+     "numInfectRepeat": 0.7426468759908523
+    },
+    "forecast_coverage": {
+     "0.5": 0.6182121971595655,
+     "0.8": 0.9156223893065998,
+     "0.95": 0.9891395154553049
+    },
+    "forecast_n": 1197,
+    "brier": 0.15211956993605952,
+    "mortality_mean_forecast": 0.41685241022651615,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 514.1965140997823,
+    "ess_theta_min": 97.66241296088715
+   },
+   "coverage80_gap": 0.23562238930659973,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "synthetic/theta/tau=0.02/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.02,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3624242313814305,
+     "oxyHeal": 0.9329388777710124,
+     "infectSpread": 0.8613943585721786,
+     "numRecurInj": 0.9810656463300982,
+     "numInfectRepeat": 0.8113493560218241
+    },
+    "forecast_coverage": {
+     "0.5": 0.6365914786967418,
+     "0.8": 0.934001670843776,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.15664070082400444,
+    "mortality_mean_forecast": 0.4097506460986974,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1147.016747977712,
+    "ess_theta_min": 214.1170534390321
+   },
+   "coverage80_gap": 0.264001670843776,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3624242313814305,
+     "oxyHeal": 0.9329388777710124,
+     "infectSpread": 0.8613943585721786,
+     "numRecurInj": 0.9810656463300982,
+     "numInfectRepeat": 0.8113493560218241
+    },
+    "forecast_coverage": {
+     "0.5": 0.6215538847117794,
+     "0.8": 0.9172932330827067,
+     "0.95": 0.9874686716791979
+    },
+    "forecast_n": 1197,
+    "brier": 0.15495217085200605,
+    "mortality_mean_forecast": 0.40892131804776594,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1147.016747977712,
+    "ess_theta_min": 214.1170534390321
+   },
+   "coverage80_gap": 0.24729323308270668,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.3/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.3,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3624242313814305,
+     "oxyHeal": 0.9329388777710124,
+     "infectSpread": 0.8613943585721786,
+     "numRecurInj": 0.9810656463300982,
+     "numInfectRepeat": 0.8113493560218241
+    },
+    "forecast_coverage": {
+     "0.5": 0.6248955722639933,
+     "0.8": 0.9164578111946533,
+     "0.95": 0.9866332497911445
+    },
+    "forecast_n": 1197,
+    "brier": 0.154973654143629,
+    "mortality_mean_forecast": 0.4089460791362704,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1147.016747977712,
+    "ess_theta_min": 214.1170534390321
+   },
+   "coverage80_gap": 0.24645781119465326,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.1/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.1,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3624242313814305,
+     "oxyHeal": 0.9329388777710124,
+     "infectSpread": 0.8613943585721786,
+     "numRecurInj": 0.9810656463300982,
+     "numInfectRepeat": 0.8113493560218241
+    },
+    "forecast_coverage": {
+     "0.5": 0.6190476190476191,
+     "0.8": 0.9164578111946533,
+     "0.95": 0.985797827903091
+    },
+    "forecast_n": 1197,
+    "brier": 0.15525013727314363,
+    "mortality_mean_forecast": 0.4092232234341819,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1147.016747977712,
+    "ess_theta_min": 214.1170534390321
+   },
+   "coverage80_gap": 0.24645781119465326,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.03/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.03,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3624242313814305,
+     "oxyHeal": 0.9329388777710124,
+     "infectSpread": 0.8613943585721786,
+     "numRecurInj": 0.9810656463300982,
+     "numInfectRepeat": 0.8113493560218241
+    },
+    "forecast_coverage": {
+     "0.5": 0.6299081035923141,
+     "0.8": 0.9181286549707602,
+     "0.95": 0.9891395154553049
+    },
+    "forecast_n": 1197,
+    "brier": 0.15600295106760043,
+    "mortality_mean_forecast": 0.41052080083329534,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1147.016747977712,
+    "ess_theta_min": 214.1170534390321
+   },
+   "coverage80_gap": 0.2481286549707602,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.02/tau_run=0.01/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.01,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.66,
+     "0.8": 0.93,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.925,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.3624242313814305,
+     "oxyHeal": 0.9329388777710124,
+     "infectSpread": 0.8613943585721786,
+     "numRecurInj": 0.9810656463300982,
+     "numInfectRepeat": 0.8113493560218241
+    },
+    "forecast_coverage": {
+     "0.5": 0.6324143692564745,
+     "0.8": 0.9256474519632414,
+     "0.95": 0.9908103592314118
+    },
+    "forecast_n": 1197,
+    "brier": 0.15657623878421736,
+    "mortality_mean_forecast": 0.41133075281619236,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1147.016747977712,
+    "ess_theta_min": 214.1170534390321
+   },
+   "coverage80_gap": 0.25564745196324135,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/theta/tau=0.01/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "theta",
+    "tau": 0.01,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.635,
+     "0.8": 0.92,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.6,
+      "0.8": 0.9,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.4637924135392636,
+     "oxyHeal": 0.960505799632065,
+     "infectSpread": 0.892265536697213,
+     "numRecurInj": 0.9885354303651545,
+     "numInfectRepeat": 0.856849173677127
+    },
+    "forecast_coverage": {
+     "0.5": 0.6307435254803676,
+     "0.8": 0.934001670843776,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.16111272324752363,
+    "mortality_mean_forecast": 0.413319902152245,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1815.0462965580293,
+    "ess_theta_min": 376.32858339977474
+   },
+   "coverage80_gap": 0.254001670843776,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=1.0/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 1.0,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.635,
+     "0.8": 0.92,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.6,
+      "0.8": 0.9,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.4637924135392636,
+     "oxyHeal": 0.960505799632065,
+     "infectSpread": 0.892265536697213,
+     "numRecurInj": 0.9885354303651545,
+     "numInfectRepeat": 0.856849173677127
+    },
+    "forecast_coverage": {
+     "0.5": 0.6248955722639933,
+     "0.8": 0.9273182957393483,
+     "0.95": 0.9899749373433584
+    },
+    "forecast_n": 1197,
+    "brier": 0.15849800633293673,
+    "mortality_mean_forecast": 0.41067362553078757,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1815.0462965580293,
+    "ess_theta_min": 376.32858339977474
+   },
+   "coverage80_gap": 0.24731829573934827,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.3/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.3,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.635,
+     "0.8": 0.92,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.6,
+      "0.8": 0.9,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.4637924135392636,
+     "oxyHeal": 0.960505799632065,
+     "infectSpread": 0.892265536697213,
+     "numRecurInj": 0.9885354303651545,
+     "numInfectRepeat": 0.856849173677127
+    },
+    "forecast_coverage": {
+     "0.5": 0.6248955722639933,
+     "0.8": 0.9264828738512949,
+     "0.95": 0.9916457811194653
+    },
+    "forecast_n": 1197,
+    "brier": 0.15850474311930635,
+    "mortality_mean_forecast": 0.4107074588090834,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1815.0462965580293,
+    "ess_theta_min": 376.32858339977474
+   },
+   "coverage80_gap": 0.24648287385129486,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.1/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.1,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.635,
+     "0.8": 0.92,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.6,
+      "0.8": 0.9,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.4637924135392636,
+     "oxyHeal": 0.960505799632065,
+     "infectSpread": 0.892265536697213,
+     "numRecurInj": 0.9885354303651545,
+     "numInfectRepeat": 0.856849173677127
+    },
+    "forecast_coverage": {
+     "0.5": 0.6257309941520468,
+     "0.8": 0.9256474519632414,
+     "0.95": 0.9908103592314118
+    },
+    "forecast_n": 1197,
+    "brier": 0.15881379376139776,
+    "mortality_mean_forecast": 0.4109597218134377,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1815.0462965580293,
+    "ess_theta_min": 376.32858339977474
+   },
+   "coverage80_gap": 0.24564745196324134,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.03/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.03,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.635,
+     "0.8": 0.92,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.6,
+      "0.8": 0.9,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.4637924135392636,
+     "oxyHeal": 0.960505799632065,
+     "infectSpread": 0.892265536697213,
+     "numRecurInj": 0.9885354303651545,
+     "numInfectRepeat": 0.856849173677127
+    },
+    "forecast_coverage": {
+     "0.5": 0.6240601503759399,
+     "0.8": 0.9264828738512949,
+     "0.95": 0.9908103592314118
+    },
+    "forecast_n": 1197,
+    "brier": 0.15989995374296823,
+    "mortality_mean_forecast": 0.4126224481311954,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1815.0462965580293,
+    "ess_theta_min": 376.32858339977474
+   },
+   "coverage80_gap": 0.24648287385129486,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "synthetic/run/tau=0.01/tau_run=0.01/floor=1.0",
+   "config": {
+    "theta_method": "synthetic",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.01,
+    "var_floor": 1.0,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.635,
+     "0.8": 0.92,
+     "0.95": 0.99
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.6,
+      "0.8": 0.9,
+      "0.95": 1.0
+     },
+     "oxyHeal": {
+      "0.5": 0.525,
+      "0.8": 0.725,
+      "0.95": 0.95
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.4637924135392636,
+     "oxyHeal": 0.960505799632065,
+     "infectSpread": 0.892265536697213,
+     "numRecurInj": 0.9885354303651545,
+     "numInfectRepeat": 0.856849173677127
+    },
+    "forecast_coverage": {
+     "0.5": 0.6257309941520468,
+     "0.8": 0.9256474519632414,
+     "0.95": 0.9908103592314118
+    },
+    "forecast_n": 1197,
+    "brier": 0.16080937250878838,
+    "mortality_mean_forecast": 0.41428456073993714,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1815.0462965580293,
+    "ess_theta_min": 376.32858339977474
+   },
+   "coverage80_gap": 0.24564745196324134,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "mixture/run/tau=1.0/tau_run=1.0/floor=0.25",
+   "config": {
+    "theta_method": "mixture",
+    "forecast_level": "run",
+    "tau": 1.0,
+    "tau_run": 1.0,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.225,
+     "0.8": 0.34,
+     "0.95": 0.495
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.175,
+      "0.8": 0.325,
+      "0.95": 0.55
+     },
+     "oxyHeal": {
+      "0.5": 0.025,
+      "0.8": 0.175,
+      "0.95": 0.3
+     },
+     "infectSpread": {
+      "0.5": 0.225,
+      "0.8": 0.325,
+      "0.95": 0.475
+     },
+     "numRecurInj": {
+      "0.5": 0.275,
+      "0.8": 0.375,
+      "0.95": 0.5
+     },
+     "numInfectRepeat": {
+      "0.5": 0.425,
+      "0.8": 0.5,
+      "0.95": 0.65
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.016321523711070252,
+     "oxyHeal": 0.1737748172771995,
+     "infectSpread": 0.19828085397186496,
+     "numRecurInj": 0.25530333539856304,
+     "numInfectRepeat": 0.17126042072595254
+    },
+    "forecast_coverage": {
+     "0.5": 0.15204678362573099,
+     "0.8": 0.24310776942355888,
+     "0.95": 0.3517126148705096
+    },
+    "forecast_n": 1197,
+    "brier": 0.18636393571329318,
+    "mortality_mean_forecast": 0.45613519090232824,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1.322597098966194,
+    "ess_theta_min": 1.000000469090308
+   },
+   "coverage80_gap": 1.0168922305764412,
+   "max_under80": 0.625
+  },
+  {
+   "name": "mixture/run/tau=0.3/tau_run=0.3/floor=0.25",
+   "config": {
+    "theta_method": "mixture",
+    "forecast_level": "run",
+    "tau": 0.3,
+    "tau_run": 0.3,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.475,
+     "0.8": 0.695,
+     "0.95": 0.815
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.5,
+      "0.8": 0.775,
+      "0.95": 0.875
+     },
+     "oxyHeal": {
+      "0.5": 0.25,
+      "0.8": 0.4,
+      "0.95": 0.6
+     },
+     "infectSpread": {
+      "0.5": 0.425,
+      "0.8": 0.75,
+      "0.95": 0.85
+     },
+     "numRecurInj": {
+      "0.5": 0.525,
+      "0.8": 0.75,
+      "0.95": 0.8
+     },
+     "numInfectRepeat": {
+      "0.5": 0.675,
+      "0.8": 0.8,
+      "0.95": 0.95
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.049298442614014,
+     "oxyHeal": 0.4260481683614753,
+     "infectSpread": 0.4857023913455542,
+     "numRecurInj": 0.6587281443976284,
+     "numInfectRepeat": 0.4132471747706437
+    },
+    "forecast_coverage": {
+     "0.5": 0.3567251461988304,
+     "0.8": 0.5555555555555556,
+     "0.95": 0.7644110275689223
+    },
+    "forecast_n": 1197,
+    "brier": 0.14192687395426018,
+    "mortality_mean_forecast": 0.46328551267399,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 5.286749925500866,
+    "ess_theta_min": 1.0210547419517537
+   },
+   "coverage80_gap": 0.34944444444444456,
+   "max_under80": 0.4
+  },
+  {
+   "name": "mixture/run/tau=0.1/tau_run=0.1/floor=0.25",
+   "config": {
+    "theta_method": "mixture",
+    "forecast_level": "run",
+    "tau": 0.1,
+    "tau_run": 0.1,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.63,
+     "0.8": 0.89,
+     "0.95": 0.97
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.85,
+      "0.95": 0.925
+     },
+     "oxyHeal": {
+      "0.5": 0.35,
+      "0.8": 0.675,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 0.95,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.8,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.0884194615527845,
+     "oxyHeal": 0.6556383060273404,
+     "infectSpread": 0.674396576613236,
+     "numRecurInj": 0.9043439265481744,
+     "numInfectRepeat": 0.5902989034820052
+    },
+    "forecast_coverage": {
+     "0.5": 0.5104427736006684,
+     "0.8": 0.8613199665831245,
+     "0.95": 0.9598997493734336
+    },
+    "forecast_n": 1197,
+    "brier": 0.1412665347719525,
+    "mortality_mean_forecast": 0.44334246611262385,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 79.85529020178559,
+    "ess_theta_min": 1.7415998998705522
+   },
+   "coverage80_gap": 0.1513199665831244,
+   "max_under80": 0.125
+  },
+  {
+   "name": "mixture/run/tau=0.05/tau_run=0.05/floor=0.25",
+   "config": {
+    "theta_method": "mixture",
+    "forecast_level": "run",
+    "tau": 0.05,
+    "tau_run": 0.05,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.65,
+     "0.8": 0.915,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.675,
+      "0.8": 0.875,
+      "0.95": 0.975
+     },
+     "oxyHeal": {
+      "0.5": 0.425,
+      "0.8": 0.725,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.7,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.8,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.12911324681386768,
+     "oxyHeal": 0.7657588119009139,
+     "infectSpread": 0.757635035575323,
+     "numRecurInj": 0.9443149410131605,
+     "numInfectRepeat": 0.671459470284903
+    },
+    "forecast_coverage": {
+     "0.5": 0.5672514619883041,
+     "0.8": 0.8930659983291562,
+     "0.95": 0.9841269841269841
+    },
+    "forecast_n": 1197,
+    "brier": 0.15095932311183408,
+    "mortality_mean_forecast": 0.4411883426332711,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 209.85626317601788,
+    "ess_theta_min": 8.636794115541168
+   },
+   "coverage80_gap": 0.20806599832915618,
+   "max_under80": 0.07500000000000007
+  },
+  {
+   "name": "mixture/run/tau=0.02/tau_run=0.02/floor=0.25",
+   "config": {
+    "theta_method": "mixture",
+    "forecast_level": "run",
+    "tau": 0.02,
+    "tau_run": 0.02,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.615,
+     "0.8": 0.91,
+     "0.95": 0.98
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.575,
+      "0.8": 0.875,
+      "0.95": 0.975
+     },
+     "oxyHeal": {
+      "0.5": 0.45,
+      "0.8": 0.7,
+      "0.95": 0.925
+     },
+     "infectSpread": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 0.975,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.75,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.2269130263958888,
+     "oxyHeal": 0.859773273747068,
+     "infectSpread": 0.8207940188818169,
+     "numRecurInj": 0.9672697730339994,
+     "numInfectRepeat": 0.7543481397044987
+    },
+    "forecast_coverage": {
+     "0.5": 0.6190476190476191,
+     "0.8": 0.9139515455304928,
+     "0.95": 0.9841269841269841
+    },
+    "forecast_n": 1197,
+    "brier": 0.1596534396626467,
+    "mortality_mean_forecast": 0.445127297000618,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 590.4024793521418,
+    "ess_theta_min": 67.86235882191214
+   },
+   "coverage80_gap": 0.2239515455304928,
+   "max_under80": 0.10000000000000009
+  },
+  {
+   "name": "mixture/run/tau=0.01/tau_run=0.01/floor=0.25",
+   "config": {
+    "theta_method": "mixture",
+    "forecast_level": "run",
+    "tau": 0.01,
+    "tau_run": 0.01,
+    "var_floor": 0.25,
+    "survival_floor": 0.001
+   },
+   "summary": {
+    "n_patients": 40,
+    "theta_coverage": {
+     "0.5": 0.615,
+     "0.8": 0.91,
+     "0.95": 0.975
+    },
+    "theta_coverage_by_param": {
+     "inj_number": {
+      "0.5": 0.575,
+      "0.8": 0.85,
+      "0.95": 0.975
+     },
+     "oxyHeal": {
+      "0.5": 0.45,
+      "0.8": 0.7,
+      "0.95": 0.9
+     },
+     "infectSpread": {
+      "0.5": 0.675,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numRecurInj": {
+      "0.5": 0.65,
+      "0.8": 1.0,
+      "0.95": 1.0
+     },
+     "numInfectRepeat": {
+      "0.5": 0.725,
+      "0.8": 1.0,
+      "0.95": 1.0
+     }
+    },
+    "contraction_by_param": {
+     "inj_number": 0.33697982412765703,
+     "oxyHeal": 0.9088373204531421,
+     "infectSpread": 0.8606037246881604,
+     "numRecurInj": 0.9807878066945579,
+     "numInfectRepeat": 0.81310549540601
+    },
+    "forecast_coverage": {
+     "0.5": 0.6466165413533834,
+     "0.8": 0.9214703425229741,
+     "0.95": 0.9849624060150376
+    },
+    "forecast_n": 1197,
+    "brier": 0.16462020877165676,
+    "mortality_mean_forecast": 0.45274036032390724,
+    "mortality_observed": 0.325,
+    "ess_theta_median": 1088.2352299267438,
+    "ess_theta_min": 230.8482976043079
+   },
+   "coverage80_gap": 0.23147034252297405,
+   "max_under80": 0.10000000000000009
+  }
+ ],
+ "rule_v1_choice": "synthetic/run/tau=0.3/tau_run=0.1/floor=0.25"
+}

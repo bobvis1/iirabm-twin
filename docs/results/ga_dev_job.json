@@ -1,0 +1,19 @@
+{
+ "job": "twin-ga-dev",
+ "instances": 4,
+ "instance_type": "ml.c8i.8xlarge",
+ "wall_minutes": 27.6,
+ "estimated_cost_usd": 3.3120000000000003,
+ "patients": 20,
+ "sims_per_patient": {
+  "median": 2496,
+  "min": 2184,
+  "max": 3656
+ },
+ "generations": {
+  "min": 6,
+  "max": 11
+ },
+ "stopped_early": 20,
+ "wall_s_per_patient_median": 303.9886636734009
+}

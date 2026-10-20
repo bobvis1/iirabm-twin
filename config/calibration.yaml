@@ -1,0 +1,29 @@
+# Calibration settings chosen on the DEVELOPMENT cohort only (scripts/tune_calibration.py,
+# docs/results/calibration_tuning.json). Frozen before the test cohort is scored (Phase 5).
+# Rule v2: no parameter's 80% interval under-covers by more than 0.15 and the smallest effective
+# sample size is at least 20; then the lowest Brier score of the 28-day mortality forecast.
+library_posterior:
+  theta_method: synthetic     # Gaussian synthetic likelihood per design point
+  forecast_level: theta       # mix a design point's alive runs equally
+  tau: 0.1                    # tempering exponent on the reading term (tau = 1: far too narrow)
+  tau_run: 0.1                # used only by the run-level variant, reported alongside in Phase 5
+  var_floor: 0.25             # floor on the across-run variance, fraction of the noise variance
+  survival_floor: 0.001
+# GA calibration. Population, generations and seeds are the plan's defaults. delta and kappa were
+# chosen on 20 development patients after the GA runs (scripts/tune_ga_delta.py,
+# docs/results/ga_tuning.json). NO setting was feasible under the rule (worst 80% under-coverage
+# <= 0.15); these are the pair with the smallest worst under-coverage (0.20), ties broken by Brier.
+# The GA's evaluated points are an optimiser's trace, not a posterior sample, so its parameter
+# intervals are too narrow. Report that, do not hide it.
+ga:
+  pop_size: 40
+  max_generations: 25
+  k_seeds: 8
+  patience: 5
+  tol: 0.5
+  elite: 2
+  forecast_top: 64
+  forecast_seeds: 8
+  seed: 0
+  delta: 5.0                  # keep evaluated thetas within this log-likelihood of the best
+  kappa: 0.5                  # extra tempering of the GA's likelihood weights, exp(kappa x difference)
