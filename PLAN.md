@@ -233,9 +233,14 @@ configs across `n_workers` long-lived `iirabm_cli` processes (JSON Lines over pi
 input order, and raises on any engine error with the failing config's `id`. The binary path comes
 from `IIRABM_BIN`. `Result` is a dataclass with numpy arrays for the series.
 
-**2.2 Seeds (`twin.seeds`).** The three non-overlapping ranges from CLAUDE.md, with helpers that
-derive seeds deterministically from names (for example `library_seed(theta_id, k)`), so every
-run can be reproduced from its config.
+**2.2 Seeds (`twin.seeds`).** The non-overlapping ranges from CLAUDE.md, with helpers that derive
+seeds deterministically from names (for example `library_seed(theta_id, k)`), so every run can be
+reproduced from its config. *Done:* the shared library-and-calibration range is split into library
+`[1, 500_000)`, calibration `[500_000, 750_000)` and search `[750_000, 1_000_000)`, so library runs
+are never reused by a calibration or a search; patients stay `[1_000_000, 2_000_000)` and futures
+`[2_000_000, 3_000_000)`. Library seeds are `1 + theta_id * 16 + k` (unique); pilot sweeps use
+design-point ids from 30,000 up, so the library is limited to fewer than 30,000 design points.
+The other helpers return distinct seeds within a label (label hash plus a prime stride).
 
 **2.3 Parameter space (`twin.params`) and pilot sweep (1.5 h).**
 - Run a local pilot (reference container, all local cores): about 300 random θ × 4 library seeds,
@@ -256,6 +261,17 @@ run can be reproduced from its config.
   next Sobol points.
 - Write `docs/parameter_space.md` (ranges, design, pilot figures). Do not quote published ranges
   unless you have checked the paper. **[you]** Approve the ranges and design before Phase 3.
+- *Done (2026-10-20):* pilot of 300 θ × 4 seeds (1,200 runs, 25 min locally); box kept as
+  `inj_number` 10-50, `oxyHeal` 0.03-0.30, `infectSpread` 2-12, `numRecurInj` 1-6,
+  `numInfectRepeat` 1-6 (`config/prior.yaml`). 77% of runs alive at 72 h; outcomes depend mostly on
+  θ. `oxyHeal` does not affect survival to 72 h but strongly affects survival to 28 days, so
+  readings up to T_d may say little about it (a Phase 5 question). The proposed library is
+  N = 4,096 points (a power of two, so the Sobol points are balanced) × 16 seeds, about 57 CPU-hours
+  at 1 ms per step; Phase 3 re-measures the step time and may revise N. Not explored:
+  `numRecurInj` = 0, `inj_number` < 10. The assay limits of detection come from the pilot
+  (5th percentile of true panel values; `config/measurement.yaml`).
+- Local engine runs: `scripts/iirabm_docker.sh` (set as `IIRABM_BIN`) runs the pinned container;
+  the Mac host was short of memory in Phase 1 and 2, which slowed Docker.
 
 **2.4 Virtual patients (`twin.patients`, `twin.truth`).** Sample θ from the continuous prior
 (independently of the library design, so a patient's θ is never a library point) and a seed from
@@ -282,7 +298,7 @@ and full trajectories to `truth/` (git-ignored). Only `twin.truth` reads them, a
 - Output: an `Observations` object (times, values, censoring flags, panel, T_d). Nothing else
   about the patient.
 
-**Required tests:** truth isolation (`twin.calibrate`, `twin.treat`, `twin.forecast` and
+**Required tests (all done):** truth isolation (`twin.calibrate`, `twin.treat`, `twin.forecast` and
 `twin.likelihood` do not import `twin.truth` or reference `truth/`; check imports with `ast`, not
 string search); seed ranges do not overlap; `run_batch` with 1 worker equals 4 workers;
 measurements are reproducible from the patient id; censored readings are flagged, never zeros;

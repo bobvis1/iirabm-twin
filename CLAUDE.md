@@ -89,10 +89,11 @@ multiply-adds by default, which changes float rounding. Therefore:
    written to `truth/` files that only `twin.evaluate` (and tests) may read. Calibration and
    treatment code receive an `Observations` object and nothing else. A test enforces that
    `twin.calibrate` and `twin.treat` never import `twin.truth` or read `truth/` paths.
-2. **Seed ranges never overlap.** Virtual-patient seeds come from `[1_000_000, 2_000_000)`,
-   library and calibration seeds from `[1, 1_000_000)`, and post-decision "future" seeds used to
-   score treatments on the true patient from `[2_000_000, 3_000_000)`. `twin.seeds` owns these
-   ranges; a test checks them.
+2. **Seed ranges never overlap.** Virtual-patient seeds come from `[1_000_000, 2_000_000)`;
+   library, calibration and search seeds from `[1, 500_000)`, `[500_000, 750_000)` and
+   `[750_000, 1_000_000)` respectively; and post-decision "future" seeds used to score treatments
+   on the true patient from `[2_000_000, 3_000_000)`. `twin.seeds` owns these ranges; a test checks
+   them.
 3. **The twin sees only the observation window.** Calibration uses readings up to the decision
    time (default 72 h). Forecasts are scored only on what happens after that time.
 4. **Development and test patients are separate.** Virtual patients are split into a development
@@ -176,6 +177,14 @@ engine binary and every Python dependency are baked into the image.
   starting the next phase.
 - Tasks marked **[you]** in PLAN.md need the user (account actions, decisions, reviews). Ask for
   them; do not work around them.
+- **Ask before committing.** Do not run `git commit` (in this repository or in the engine fork)
+  until the user says to. Show what would be committed (files and a proposed message) and wait.
+  The same goes for pushing and for bumping the `engine` submodule pin.
+- **Point out explicitly if anything is going to be cut.** Anything dropped, skipped, shrunk or
+  deferred relative to PLAN.md (a deliverable, a test, a study, a cohort size, a check, an
+  acceptance item) is named to the user in plain words, with the reason, before or when it
+  happens, and again in the phase report. Never cut silently, and never fold a cut into a
+  summary of "what was done".
 - If a phase is running long, say so and propose what to cut, using the cut order in PLAN.md.
 - When a choice is between something more impressive and something more likely to finish,
   choose the one more likely to finish and note the alternative in `docs/future_work.md`.
