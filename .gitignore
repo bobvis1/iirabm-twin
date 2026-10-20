@@ -1,0 +1,37 @@
+# Data and artifacts (simulation outputs, hidden truth)
+data/
+truth/
+outputs/
+*.parquet
+*.tar.gz
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+*.tfvars
+!*.tfvars.example
+
+# Config with personal values
+config/settings.yaml
+config/outputs.json
+.env
+*.pem
+.aws/
+
+# Local reference docs (cached, referenced repeatedly)
+docs_cache/
+
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Claude Code local settings
+.claude/settings.local.json
