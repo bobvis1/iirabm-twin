@@ -4,7 +4,7 @@ ENGINE_DIR ?= engine
 export ENGINE_DIR
 
 .DEFAULT_GOAL := help
-.PHONY: help sync test lint format
+.PHONY: help sync test lint format cohort figure
 
 help:  ## List targets
 	@grep -E '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  %-10s %s\n", $$1, $$2}'
@@ -22,3 +22,9 @@ lint: sync  ## Check lint and formatting
 format: sync  ## Apply formatting and safe lint fixes
 	uv run ruff check --fix .
 	uv run ruff format .
+
+cohort: sync  ## Build the development (40) and test (100) virtual-patient cohorts locally
+	IIRABM_BIN=$${IIRABM_BIN:-scripts/iirabm_docker.sh} uv run python -m twin.patients
+
+figure: sync  ## Plot docs/figures/example_patient.png (needs the cohorts)
+	uv run python scripts/plot_example_patient.py

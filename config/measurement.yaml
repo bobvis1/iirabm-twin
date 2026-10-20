@@ -1,0 +1,24 @@
+# Assay model for the virtual patients (arbitrary model units).
+# lod: lower limit of detection per cytokine = 5th percentile of the true panel values over
+# readings 51..612 among pilot runs alive at 72 h (scripts/analyze_pilot.py). Readings below
+# it are reported as censored, never as zero.
+noise_cv: 0.25
+missing_fraction: 0.0
+panel:
+- TNF
+- IL1
+- IL1ra
+- IL10
+- IL8
+- GCSF
+- IL12
+- IFNg
+lod:
+  TNF: 2.0989
+  IL1: 2.1016
+  IL1ra: 5.7108
+  IL10: 6.9532
+  IL8: 8.4988
+  GCSF: 9.2312
+  IL12: 0.4316
+  IFNg: 0.1544

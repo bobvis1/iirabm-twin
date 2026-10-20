@@ -1,0 +1,9 @@
+# Prior over the five patient parameters: uniform on this box. Integers are inclusive.
+# PROPOSED after the Phase 2 pilot sweep (docs/parameter_space.md); awaiting approval before Phase 3.
+# If the ranges change, rebuild the cohorts (make cohort).
+bounds:
+  inj_number: [10, 50]
+  oxyHeal: [0.03, 0.30]
+  infectSpread: [2, 12]
+  numRecurInj: [1, 6]
+  numInfectRepeat: [1, 6]
