@@ -50,9 +50,32 @@ Simulation library: {lib["n_design_points"]:,} design points x {lib["seeds_per_p
 """
 
 
+def validation_block() -> str:
+    v = json.loads((DOCS_DIR / "results" / "validation.json").read_text())
+    m = v["methods"]
+    mo = m["library_theta"]["mortality"]
+    po = m["prior_only"]["mortality"]
+    fc = m["library_theta"]["forecast_coverage"]
+    return f"""### Validation (test cohort, {len(v["patients"])} virtual patients, settings frozen before scoring)
+
+In this model, with virtual patients drawn from the same model the twin assumes (a well-specified
+setting, so near-nominal coverage is the expected result; see `docs/validation_report.md`):
+
+| 28-day mortality forecast | Brier score | AUROC |
+|---|---|---|
+| prior only (no patient data) | {po["brier"][0]:.3f} | {po["auroc"][0]:.2f} |
+| library twin, theta-level | {mo["brier"][0]:.3f} [{mo["brier"][1]:.3f}, {mo["brier"][2]:.3f}] | {mo["auroc"][0]:.2f} |
+
+Predictive intervals for oxy deficit and the cytokine panel contain the truth {fc["0.5"]["coverage"]:.0%}
+(50% interval), {fc["0.8"]["coverage"]:.0%} (80%) and {fc["0.95"]["coverage"]:.0%} (95%) of the time.
+"""
+
+
 def main() -> None:
     text = README.read_text()
     text = block("cost", cost_block(), text)
+    if (DOCS_DIR / "results" / "validation.json").exists():
+        text = block("validation", validation_block(), text)
     README.write_text(text)
 
 

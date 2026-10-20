@@ -9,19 +9,52 @@ Guards keep development and test results apart (CLAUDE.md rule 4):
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import numpy as np
 
 from twin.calibrate import Posterior
 from twin.forecast import LEVELS, Forecast, ForecastEngine, theta_summary
 from twin.librarydata import TARGET_DAYS, TARGET_STEPS, TARGET_VARS, LibraryData
+from twin.observe import Observations, make_observations
 from twin.params import INT_PARAMS, PARAM_NAMES
 from twin.truth import PatientTruth, read_truth
+
+
+def _tie_rng(patient_id: str, name: str) -> np.random.Generator:
+    import hashlib
+
+    h = hashlib.blake2b(f"rank/{patient_id}/{name}".encode(), digest_size=8).digest()
+    return np.random.default_rng(int.from_bytes(h, "big"))
+
+
+def regenerate_observations(patient_id: str, model) -> Observations:
+    """Draw a patient's readings again from the stored truth under a different measurement model
+    (noise level, panel, missingness). With the default model this equals the stored observations;
+    the same standard normals are used, so a different noise level rescales the same draws."""
+    t = read_truth(patient_id)
+    return make_observations(patient_id, t.series, t.record_steps, model)
 
 
 def assert_development_only(patient_ids: list[str]) -> None:
     bad = [p for p in patient_ids if not p.startswith("dev-")]
     if bad:
         raise ValueError(f"tuning may only use development patients; refused: {bad[:3]}")
+
+
+def assert_frozen() -> str:
+    """Refuse to score the test cohort unless the calibration, prior and measurement settings are
+    exactly the committed ones; returns the commit hash they are frozen at."""
+    import subprocess
+
+    files = ["config/calibration.yaml", "config/prior.yaml", "config/measurement.yaml"]
+    root = Path(__file__).resolve().parents[2]
+    dirty = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", *files], cwd=root).returncode
+    if dirty:
+        raise RuntimeError(f"settings are not frozen: uncommitted changes in {files}")
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=root, capture_output=True, text=True, check=True
+    ).stdout.strip()
 
 
 def _check_cohort(patient_ids: list[str], allow_development: bool) -> None:
@@ -56,12 +89,14 @@ def score_patient(
         true = getattr(truth.theta, name)
         cov = {lv: bool(lo <= true <= hi) for lv, (lo, hi) in th[name]["intervals"].items()}
         v = lib.theta[:, j]
-        # rank of the truth among posterior draws (mid-rank for ties), in [0, 1]
+        # rank of the truth among posterior draws in [0, 1]; ties (integer parameters) are broken
+        # at random, with a generator seeded by the patient and parameter so it is reproducible
         below = post.theta_w[v < true].sum()
         equal = post.theta_w[v == true].sum() if name in INT_PARAMS else 0.0
+        u = _tie_rng(truth.patient_id, name).random()
         theta[name] = {
             "covered": cov,
-            "rank": float(below + 0.5 * equal),
+            "rank": float(below + u * equal),
             "mean": th[name]["mean"],
             "contraction": th[name]["var"] / prior_var[j],
         }

@@ -166,3 +166,21 @@ def save_observations(obs: Observations) -> None:
 
 def load_observations(patient_id: str) -> Observations:
     return Observations.from_json(json.loads(observations_path(patient_id).read_text()))
+
+
+def subset_observations(obs: Observations, readings: list[int], panel: list[str]) -> Observations:
+    """Keep only some readings (by index) and some cytokines (by name), e.g. for a measurement
+    design with a longer sampling interval, a shorter window or a smaller panel."""
+    cols = [obs.panel.index(c) for c in panel]
+    idx = np.asarray(readings, dtype=int)
+    return Observations(
+        patient_id=obs.patient_id,
+        panel=tuple(panel),
+        steps=obs.steps[idx],
+        values=obs.values[np.ix_(idx, cols)],
+        censored=obs.censored[np.ix_(idx, cols)],
+        missing=obs.missing[np.ix_(idx, cols)],
+        lod=obs.lod[cols],
+        noise_cv=obs.noise_cv,
+        decision_step=obs.decision_step,
+    )

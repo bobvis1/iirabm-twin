@@ -22,14 +22,21 @@ def main() -> None:
     ap.add_argument("name")
     ap.add_argument("--n", type=int, default=20, help="first n development patients by id")
     ap.add_argument("--upload", action="store_true")
+    ap.add_argument("--cohort", choices=["development", "test"], default="development")
     ap.add_argument("--pop-size", type=int)
     ap.add_argument("--max-generations", type=int)
     args = ap.parse_args()
-    ids = [f"dev-{i:03d}" for i in range(1, args.n + 1)]
-    assert_development_only(ids)
+    prefix = "dev" if args.cohort == "development" else "test"
+    ids = [f"{prefix}-{i:03d}" for i in range(1, args.n + 1)]
+    if args.cohort == "development":
+        assert_development_only(ids)
+    else:
+        from twin.evaluate import assert_frozen
+
+        print("test cohort: settings frozen at", assert_frozen())
     cfg = yaml.safe_load((CONFIG_DIR / "calibration.yaml").read_text())
     cal = {k: v for k, v in cfg["library_posterior"].items()}
-    ga = {k: v for k, v in cfg["ga"].items() if k != "delta"}
+    ga = {k: v for k, v in cfg["ga"].items() if k not in ("delta", "kappa")}
     if args.pop_size:
         ga["pop_size"] = args.pop_size
     if args.max_generations:

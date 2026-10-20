@@ -1,0 +1,40 @@
+{
+ "development": {
+  "n": 40,
+  "observed_mortality": 0.325,
+  "matched": {
+   "brier": 0.14571504412776176,
+   "auroc": 0.8660968660968661
+  },
+  "shuffled_observations": {
+   "brier": 0.32011572392302956,
+   "auroc": 0.5498575498575499
+  },
+  "oracle_true_theta_neighbours": {
+   "brier": 0.07891170053622654,
+   "auroc": 0.98005698005698
+  },
+  "patient_seed_ranges": [
+   "patient"
+  ]
+ },
+ "test": {
+  "n": 100,
+  "observed_mortality": 0.43,
+  "matched": {
+   "brier": 0.059454943435056015,
+   "auroc": 0.9804161566707467
+  },
+  "shuffled_observations": {
+   "brier": 0.3860749211133702,
+   "auroc": 0.5095879232966136
+  },
+  "oracle_true_theta_neighbours": {
+   "brier": 0.056822758159434564,
+   "auroc": 0.99265605875153
+  },
+  "patient_seed_ranges": [
+   "patient"
+  ]
+ }
+}

@@ -53,6 +53,16 @@ class LibraryData:
     def k(self) -> int:
         return self.panel_pre.shape[1]
 
+    def restrict(self, readings: list[int], panel: list[str]) -> LibraryData:
+        """The same library seen through a smaller measurement design (readings and cytokines by
+        index/name): only panel_pre changes; forecast targets and survival are untouched."""
+        cols = [self.panel.index(c) for c in panel]
+        pre = self.panel_pre[:, :, np.asarray(readings, dtype=int)][..., cols]
+        return LibraryData(
+            self.theta, tuple(panel), pre, self.targets, self.alive_td, self.died,
+            self.death_step, self.target_steps,
+        )  # fmt: skip
+
     def save(self, path: Path) -> None:
         np.savez_compressed(
             path, theta=self.theta, panel=np.array(self.panel), panel_pre=self.panel_pre,

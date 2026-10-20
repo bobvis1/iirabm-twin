@@ -36,3 +36,18 @@ Simulation library: 4,096 design points x 16 seeds =
 `ml.c8i.8xlarge`, 91.5 minutes, about **$10.98**
 (estimate from instance-hours; confirm in Cost Explorer, which lags about a day).
 <!-- cost:end -->
+
+<!-- validation:start -->
+### Validation (test cohort, 100 virtual patients, settings frozen before scoring)
+
+In this model, with virtual patients drawn from the same model the twin assumes (a well-specified
+setting, so near-nominal coverage is the expected result; see `docs/validation_report.md`):
+
+| 28-day mortality forecast | Brier score | AUROC |
+|---|---|---|
+| prior only (no patient data) | 0.246 | 0.50 |
+| library twin, theta-level | 0.059 [0.038, 0.084] | 0.98 |
+
+Predictive intervals for oxy deficit and the cytokine panel contain the truth 63%
+(50% interval), 89% (80%) and 98% (95%) of the time.
+<!-- validation:end -->

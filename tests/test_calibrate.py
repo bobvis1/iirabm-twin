@@ -124,3 +124,24 @@ def test_real_library_loads_and_has_the_expected_shape():
     lib = LibraryData.load(REAL)
     assert lib.n == 4096 and lib.k == 16 and abs(lib.alive_td.mean() - 0.80) < 0.01
     assert np.isnan(lib.panel_pre[lib.alive_td]).sum() == 0  # runs alive at T_d have every reading
+
+
+def test_restricting_the_design_keeps_alignment_between_library_and_observations():
+    from twin.observe import subset_observations
+
+    lib = synthetic_library()
+    obs = obs_at(lib, 20)
+    readings, panel = [1, 3, 5, 7, 9, 11], ["TNF", "IL10", "IL8"]
+    small_lib = lib.restrict(readings, panel)
+    small_obs = subset_observations(obs, readings, panel)
+    assert small_lib.panel_pre.shape == (lib.n, lib.k, 6, 3) and small_obs.values.shape == (6, 3)
+    assert list(small_obs.steps) == [102, 204, 306, 408, 510, 612]
+    j = lib.panel.index("IL10")
+    assert np.array_equal(
+        small_lib.panel_pre[3, 1, 2, 1], lib.panel_pre[3, 1, 5, j], equal_nan=True
+    )
+    assert np.allclose(
+        small_obs.values[2, 1], obs.values[5, obs.panel.index("IL10")], equal_nan=True
+    )
+    post = library_posterior(small_obs, small_lib, CalibrationConfig(tau=1.0))
+    assert abs(post.run_w.sum() - 1) < 1e-12

@@ -434,6 +434,12 @@ patients are written to `config/calibration.yaml`. Test-cohort observations have
 
 ### Phase 5: Validation and measurement design (4 h)
 
+*Done (2026-10-20), see `docs/validation_report.md` and `docs/results/validation.json`: library posterior
+Brier 0.059 vs 0.246 prior-only on 100 test patients; GA run for 40 test patients (about $6.9). The
+test score was far better than the development score, so leakage was checked (shuffled readings,
+true-theta oracle) and the checks are in the report. The measurement-design table was recomputed
+after a runner bug dropped it from the first save (disclosed in the report).*
+
 Run once on the **test cohort**, with the settings frozen in `config/calibration.yaml`. Only
 `twin.evaluate` reads the truth.
 
