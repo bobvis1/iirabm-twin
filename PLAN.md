@@ -19,8 +19,8 @@ waits for the user before starting the next one.
    and documents each defect with evidence and its measured effect (`docs/engine_changes.md`).
    It is written so the fixes could be offered upstream.
 2. **This repository** (`github.com/bobvis1/iirabm-twin`, MIT): virtual patients, measurement
-   model, simulation library, calibration (grid posterior and GA), validation, treatment search,
-   Terraform, container, SageMaker job launchers, tests.
+   model, simulation library, calibration (library posterior and GA), validation, treatment
+   search, Terraform, container, SageMaker job launchers, tests.
 3. **A validation report** (`docs/validation_report.md`): parameter recovery, forecast
    calibration and interval coverage on held-out virtual patients, compared with a prior-only
    baseline, plus a measurement-design study (sampling interval, cytokine panel, assay noise).
@@ -37,7 +37,8 @@ waits for the user before starting the next one.
 | Virtual patient | A hidden θ plus a hidden seed (from the patient seed range). Its full trajectory is the truth |
 | Decision time T_d | When the twin must forecast and choose a treatment. Default 72 h = step 612 |
 | Readings | Noisy cytokine measurements every 6 h (every 51 steps) up to T_d |
-| Library | Simulations over a grid of θ values × library seeds, full horizon, stored once and reused |
+| Library | Simulations at N design points θ (scrambled Sobol over the prior) × K library seeds, full horizon, stored once and reused |
+| Step label | The engine's `istep` after its increment at the top of the loop. The record at step s is taken after `updateSystemOxy(s)` and before that iteration's agent pass (V1 convention, pinned by tests in 1.5) |
 | Twin | The calibrated set of plausible θ (with weights) for one virtual patient |
 | Horizon | 28 days = 5,760 steps unless a phase says otherwise |
 
@@ -70,7 +71,7 @@ data/            # git-ignored: library and run outputs
 | 1 | Engine: legacy baseline, defects, refactor, CLI | 6 |
 | 2 | Python wrapper, parameter space, virtual patients, measurements | 3.5 |
 | 3 | AWS, container, simulation library on SageMaker | 5 |
-| 4 | Calibration: grid posterior and GA | 5 |
+| 4 | Calibration: library posterior and GA | 5 |
 | 5 | Validation and measurement design | 4 |
 | 6 | Treatment search and scoring | 4 |
 | 7 | Results, documentation, teardown | 2.5 |
@@ -83,7 +84,7 @@ data/            # git-ignored: library and run outputs
 **[you]**
 1. Confirm the license for this repository (default MIT; `LICENSE` is already in place).
 2. Create an empty public GitHub repository `bobvis1/iirabm` for the engine fork. Then, in
-   `../iirabm_public`:
+   `../iirabm`:
    ```bash
    git remote add github https://github.com/bobvis1/iirabm.git
    git push github master            # master stays identical to upstream
@@ -110,7 +111,7 @@ data/            # git-ignored: library and run outputs
 
 ### Phase 1: Engine: legacy baseline, defects, refactor, CLI (6 h)
 
-All C++ work happens in `../iirabm_public` on branch `twin`, committed there and pushed to the
+All C++ work happens in `../iirabm` on branch `twin`, committed there and pushed to the
 fork. This repository then bumps the `engine` submodule. Do the work in order, because each step
 is checked against the one before.
 
@@ -124,12 +125,17 @@ is checked against the one before.
   - The `outputSetup()` buffer overflow (defect 1): make `fileStart` large enough.
   - A per-config `Parameters.h` written by the script, so baselines can use different θ, seeds
     and step counts. Use `writeEverything=1`, `GA=0`, `testIntervention=0`.
-- Golden outputs, generated **in the reference container** (Linux, GCC, `-O2
-  -ffp-contract=off`): 8 configs of 3,000 steps (the default θ with seeds 1-4, plus four other θ
-  chosen so at least one dies and one survives) and one full 12,500-step config. Add one
+- Golden outputs, generated **in the reference container** (`linux/amd64`, GCC, `-O2
+  -ffp-contract=off`; emulated on the Mac is fine, since these are short runs): 8 configs of
+  3,000 steps (the default θ with seeds 1-4, plus four other θ chosen so at least one dies and
+  one survives) and one full 12,500-step config. Add one
   **multi-run** legacy config (three seeds in one process through `pickParams`), which shows
   defect 3. Store under `tests/golden/` compressed, under 5 MB in total, with a README saying
-  how they were made.
+  how they were made (including the exact GCC and libstdc++ versions of the container).
+- Build the same legacy configs in a native `linux/arm64` container and compare with the
+  goldens. If they match, arm64 may be used for fast local runs; if not, record the first
+  differing step and use amd64 for everything that is compared or reported. Doing this now,
+  not in Phase 3, means the goldens never have to be regenerated.
 
 **1.2 Confirm the defects with evidence (0.5 h).** Record each in `docs/engine_changes.md`:
 what, where, how found (AddressSanitizer output, a minimal reproduction), whether it changes
@@ -150,6 +156,14 @@ that legacy run 2 or 3 in one process differs from the same config run in a fres
   steps where `istep % output_stride == 0`. With `output_stride = 1` it must equal the legacy
   output exactly. After death, record nothing further: report `died`, `death_step`, and the last
   values.
+- **Step conventions** (from reading V1's loop; written into `docs/engine_changes.md` and pinned
+  by tests in 1.5). Step labels start at 1, so stride 51 records steps 51, 102, ... and the
+  reading at T_d = 612 is the 12th. V1 checks `reseedTime` *before* incrementing `istep`, so
+  reseeding at R changes the agent pass of the iteration labelled R + 1: records up to and
+  including step R + 1 are shared history (if `updateSystemOxy` draws no random numbers; the
+  test decides). The CLI keeps V1's comparisons for reseeding and intervention windows rather
+  than "tidying" them, and documents exactly which step labels a window `{start_step,
+  end_step}` affects.
 - Intervention windows must be able to express V1's GA schedule (start 505, spacing 100, length
   99), so the legacy GA is a special case.
 - New CLI `iirabm_cli`: reads JSON Lines (one config per line) from `--input` or stdin and writes
@@ -174,12 +188,22 @@ that has the pattern. With `engine_fixes=false`, keep the old behavior exactly.
 
 **1.5 Tests in the fork (`make test`, run in the reference container) (1 h).**
 - **Legacy equivalence:** for every single-run golden config, `iirabm_cli` with
-  `engine_fixes=false` and `output_stride=1` matches the golden output exactly.
+  `engine_fixes=false` and `output_stride=1` matches the golden output exactly. Equivalence is
+  defined for the reference build only (same compiler version, flags and standard library).
+  The legacy path depends on undefined behavior (defect 2), so a refactor that changes inlining
+  or layout could change it. A mismatch is diagnosed before anything is changed: does the
+  divergence begin at a step where an agent erased itself? Explain it in
+  `docs/engine_changes.md`; do not patch around it.
+- **Step conventions:** the first stride-51 record is labelled 51 and equals legacy
+  `writeEverything` row 51 (1-based); with `reseed_step` R, records match up to the documented
+  boundary and differ after it; an intervention window leaves every record before its
+  documented first affected step unchanged and changes a later one.
 - **Determinism:** the same config twice gives byte-identical output.
 - **Batch equals fresh:** 10 configs in one CLI process give the same results as each config in
   its own process, with `engine_fixes` both false and true.
 - **Sanitizers:** with `engine_fixes=true`, an AddressSanitizer and UndefinedBehaviorSanitizer
-  build runs 3 configs of 1,000 steps with no reports.
+  build runs 3 configs of 1,000 steps with no reports. Run this one natively (arm64 container or
+  macOS); sanitizers are unreliable under emulation and the test is not about numbers.
 - **Reseed:** two configs with the same seed and different `reseed_seed` agree on every recorded
   value up to `reseed_step` and differ after it.
 - **Neutral intervention:** an intervention window with all multipliers at 1.0 gives output
@@ -221,22 +245,34 @@ run can be reproduced from its config.
 - Choose ranges where outcomes vary: avoid large regions where every virtual patient dies before
   72 h or nobody is ever sick. Record survival at 72 h and at 28 days by parameter. Note which
   parameters seem to matter most.
-- Define the prior: uniform over a grid on those ranges. The grid's resolution is set by the
-  Phase 3 compute budget. `oxyHeal` is continuous in the engine; the grid discretizes it, and the
-  GA in Phase 4 may search it continuously.
-- Write `docs/parameter_space.md` (ranges, grid, pilot figures). Do not quote published ranges
-  unless you have checked the paper. **[you]** Approve the ranges and grid before Phase 3.
+- Define the prior: uniform on those ranges, continuous for `oxyHeal` and uniform over the
+  integers for the others.
+- Define the library design: N scrambled Sobol points (fixed scramble seed) mapped onto the
+  prior, integers by flooring. N is set by the Phase 3 compute budget. A lattice is not used:
+  at the affordable N (a few thousand) it would give about 5 values per axis, and a posterior
+  narrower than that spacing would collapse onto one point. Sobol points are a quasi-random
+  sample from the prior, so the posterior is simply likelihood weights on the points (no kernel
+  needed), every point has a distinct `oxyHeal`, and the design can be extended later with the
+  next Sobol points.
+- Write `docs/parameter_space.md` (ranges, design, pilot figures). Do not quote published ranges
+  unless you have checked the paper. **[you]** Approve the ranges and design before Phase 3.
 
-**2.4 Virtual patients (`twin.patients`, `twin.truth`).** Sample θ from the prior and a seed from
+**2.4 Virtual patients (`twin.patients`, `twin.truth`).** Sample θ from the continuous prior
+(independently of the library design, so a patient's θ is never a library point) and a seed from
 the patient range; simulate the full horizon; keep only virtual patients **alive at T_d** (like
-ICU patients at enrollment). Build two cohorts: **development** (20 patients) and **test**
-(40 patients). Write true θ, seeds and full trajectories to `truth/` (git-ignored). Only
-`twin.truth` reads them, and only `twin.evaluate` and tests import `twin.truth`.
+ICU patients at enrollment). Build two cohorts: **development** (40 patients) and **test**
+(100 patients). Truth runs and library-based calibration are cheap, so the cohorts are sized
+for tighter coverage estimates (80% coverage on 100 patients has a standard error of about 4
+points, against about 6 on 40). The costly GA calibration (Phase 4.3) runs on fixed subsets:
+the first 20 development and first 40 test patients by id, decided now. Write true θ, seeds
+and full trajectories to `truth/` (git-ignored). Only `twin.truth` reads them, and only
+`twin.evaluate` and tests import `twin.truth`.
 
 **2.5 Measurement model (`twin.observe`).**
 - Panel (default): TNF, IL1, IL1ra, IL10, IL8, GCSF, IL12, IFNg. These match the cytokines the
   ReSCUED team's ARPA-H teaming profile asked a measurement partner to report every 4-6 hours.
-  Cite the source in the docs.
+  Verify this against the source before citing it; if it cannot be verified, drop the claim and
+  justify the panel on its own terms.
 - Readings at every 51 steps (6 h) from step 51 up to T_d: 12 readings by default.
 - Noise: multiplicative log-normal with coefficient of variation 25% (configurable); a lower
   limit of detection per cytokine (values below it are reported as censored, not as numbers);
@@ -249,7 +285,10 @@ ICU patients at enrollment). Build two cohorts: **development** (20 patients) an
 **Required tests:** truth isolation (`twin.calibrate`, `twin.treat`, `twin.forecast` and
 `twin.likelihood` do not import `twin.truth` or reference `truth/`; check imports with `ast`, not
 string search); seed ranges do not overlap; `run_batch` with 1 worker equals 4 workers;
-measurements are reproducible from the patient id; censored readings are flagged, never zeros.
+measurements are reproducible from the patient id; censored readings are flagged, never zeros;
+observation times, library series and truth series use the same step labels (a reading "at
+step 612" is drawn from the truth value labelled 612, and the twin is given nothing labelled
+after T_d).
 
 **Acceptance:** `make cohort` builds both cohorts locally; `docs/figures/example_patient.png`
 shows one virtual patient's true trajectories, its readings and T_d.
@@ -268,7 +307,8 @@ cost as you apply (KMS about $1 per month; the rest is cents).
 `engine/` (GCC, the reference flags); stage two is Python 3.11 slim with the `twin` package and
 pinned dependencies installed, plus the binary. Tag images with this repository's git SHA and
 record the engine commit as an image label. Build `linux/amd64` for SageMaker (Docker v2
-manifests, as the sepsis demo learned) and `linux/arm64` for fast local runs.
+manifests, as the sepsis demo learned) and, if Phase 1 showed it matches, `linux/arm64` for fast
+local runs. Use the same base image and compiler version as the Phase 1 reference container.
 
 **3.3 Job runner (1 h).** `scripts/run_job.py` launches a **SageMaker Processing job** with the
 custom image, network isolation, KMS and the VPC. Input: JSON Lines config shards in S3,
@@ -277,16 +317,21 @@ runs one `iirabm_cli` worker per vCPU through `twin.engine.run_batch` and writes
 output prefix. Processing jobs write plain files to S3 and are simple; they do not support Spot.
 Note the Spot alternative (Training jobs) in `docs/future_work.md`.
 - **Smoke job:** 100 configs. Check that results are byte-identical to the same configs run
-  locally in the `linux/amd64` container, and compare with `linux/arm64`. Record time per step
-  on the SageMaker instance and use it to size 3.4.
+  locally in the `linux/amd64` container (arm64 parity was settled in Phase 1). Record time per
+  step on the SageMaker instance, with one worker per vCPU, and use it to size 3.4 and to
+  recheck the Phase 4 and 6 budgets. Expect it to be slower than Apple Silicon.
 
-**3.4 The library (2 h, mostly waiting).** Grid θ (from Phase 2) × K library seeds (start with
-K = 16), full horizon, `output_stride` 51, all outputs. **Size the grid so the whole library
+**3.4 The library (2 h, mostly waiting).** N Sobol design points (from Phase 2) × K library
+seeds (K = 16), full horizon, `output_stride` 51, all outputs. **Choose N so the whole library
 costs at most about 100 CPU-hours** (about $10-15; state the estimate before launching). Store
 as Parquet in long format (`theta_id, seed, step, variable values...`) plus a `thetas.parquet`
 table. Download a local copy.
-- Make the mortality landscape figure (28-day mortality over pairs of parameters), in the spirit
-  of Cockrell and An's 2017 landscape analysis. Do not claim it reproduces their figures.
+- Make the mortality landscape figure (28-day mortality over pairs of parameters, binned), in
+  the spirit of Cockrell and An's 2017 landscape analysis. Do not claim it reproduces their
+  figures.
+- From the library alone (no patient data), fix the **treatment fitness horizon** H_f for
+  Phase 6: the shortest whole number of days by which at least 90% of 28-day deaths, among
+  runs alive at T_d, have happened. Record it in `docs/parameter_space.md`.
 
 **Acceptance:** every (θ, seed) pair in the library is present exactly once; smoke parity
 checked; the cost is recorded in the README cost section; the AWS resources that cost money by
@@ -294,7 +339,7 @@ the hour are stopped.
 
 ---
 
-### Phase 4: Calibration: grid posterior and GA (5 h)
+### Phase 4: Calibration: library posterior and GA (5 h)
 
 Work on the **development cohort only** in this phase. Do not load test-cohort observations.
 
@@ -305,13 +350,28 @@ in `log1p` space. For a candidate θ with K simulated runs:
 - **Reading term:** for each cytokine and reading time, the mean and variance of `log1p(value)`
   across the runs, plus the measurement noise variance; a normal log-density for observed
   readings and a normal log-CDF for censored ones.
-- Readings are treated as independent given θ. That is an approximation; say so, and let Phase 5
-  coverage show whether it matters.
-- Unit tests on a toy simulator with a known answer.
+- Readings are treated as independent given θ. They are not: given θ, a run's seed makes its
+  deviations from the mean persist over time, so about 96 correlated readings (12 times × 8
+  cytokines) are counted as independent evidence. **Expect the posterior to be too narrow.**
+  Plan the remedies now, not after Phase 5:
+  - A tempering exponent τ in (0, 1] on the reading term, chosen on the development cohort so
+    that the 80% intervals for θ and forecasts cover close to 80%. Also report τ = 1, to show
+    how much tempering mattered.
+  - The **run-mixture likelihood**, which respects the correlation within a run:
+    p(y | θ) ≈ (1/K) Σ_k Π_t p(y_t | run k at t), using only the measurement noise. It has high
+    variance with K = 16 (one run often dominates), but it is the right object. It is the same
+    computation as the run-level weights in 4.2.
+  - A floor on the across-run variance (K = 16 gives noisy variance estimates), set as a
+    fraction of the measurement-noise variance.
+- Unit tests on a toy simulator with a known answer, including a correlated toy where the
+  independence version is overconfident by a known amount.
 
-**4.2 Grid posterior (`twin.calibrate`) (1 h).** Posterior ∝ prior × synthetic likelihood over
-the library grid. This is cheap (no new simulations) and is the **reference** method. Two
-forecast variants (`twin.forecast`):
+**4.2 Library posterior (`twin.calibrate`) (1 h).** Posterior weights ∝ synthetic likelihood at
+the library's design points (the points are a quasi-random sample from the prior, so the prior
+weights are equal). This is cheap (no new simulations) and is the **reference** method. Report
+the effective sample size (ESS) of the weights for every patient. If ESS is small (say under 20)
+for many development patients, the library is too coarse for them: say so, and lean on the GA
+comparison in 4.3. Two forecast variants (`twin.forecast`):
 - **θ-level:** mix the library runs of each θ by the θ's posterior weight.
 - **Run-level:** additionally weight each library run by how well its own pre-T_d trajectory
   matches the readings (closer to particle filtering).
@@ -319,7 +379,7 @@ Choose between them, or keep both, using the development cohort only.
 
 **4.3 GA calibration (`twin.ga`, `twin.calibrate`) (2 h).** The same objective, but each fitness
 evaluation runs **fresh simulations** (calibration seeds, horizon T_d only, so about 0.6 s each),
-with no library. This is the method that scales when θ is too large for a grid.
+with no library. This is the method that scales when θ is too large for a library.
 - A generic `twin.ga` module (unit-tested on a toy function): mixed integer and continuous genes,
   tournament selection (size 2), uniform crossover, and mutation that moves one gene a step up or
   down. These mirror the lab's 2018 GA design; cite it.
@@ -332,8 +392,9 @@ with no library. This is the method that scales when θ is too large for a grid.
   to forecast.
 - Run it as a SageMaker Processing job, several patients per instance, each GA using a share of
   the vCPUs. Estimate about 1-2 CPU-hours per patient and state the job's cost before launching.
-- Compare with the grid posterior on development patients: overlap of the high-posterior region,
-  agreement of forecasts, and the number of simulations each method used.
+- Uses the same τ as 4.1 (re-chosen for K = 8 on development patients if needed).
+- Compare with the library posterior on development patients: overlap of the high-posterior
+  region, agreement of forecasts, and the number of simulations each method used.
 
 **4.4 Prior-only baseline.** The population forecast: all library runs alive at T_d, equally
 weighted. Every result in Phase 5 is compared with it.
@@ -350,14 +411,16 @@ Run once on the **test cohort**, with the settings frozen in `config/calibration
 `twin.evaluate` reads the truth.
 
 **5.1 Parameter recovery (1 h).** For each parameter: posterior mean vs truth; 80% credible
-interval coverage; the rank of the true value within the posterior. With a correct model, ranks
-are uniform (simulation-based calibration, Talts et al. 2018). Also the posterior contraction:
+interval coverage; the rank of the true value within the posterior. With a correct model and
+exact inference, ranks are uniform (simulation-based calibration, Talts et al. 2018); the library
+posterior is a discrete approximation, so expect small departures, and break ties at random. Also the posterior contraction:
 posterior variance / prior variance, which shows which parameters 6-hourly cytokines can
 identify.
 
-**5.2 Forecasts (1.5 h).** For prior-only, grid θ-level, grid run-level and GA:
+**5.2 Forecasts (1.5 h).** For prior-only, library θ-level, library run-level and GA:
 - 28-day mortality: Brier score, log loss and AUROC, with 95% CIs from a bootstrap over
-  patients, plus a reliability plot. With 40 patients the intervals are wide; say so.
+  patients, plus a reliability plot. With 100 patients (40 for the GA) the intervals are still
+  wide; say so.
 - Coverage of the 50%, 80% and 95% predictive intervals for `oxy_deficit` and each panel
   cytokine at days 4, 7, 14 and 28, among virtual patients alive at that day.
 
@@ -366,8 +429,16 @@ sampling every 6 vs 12 vs 24 h; observation window 24 vs 48 vs 72 h; assay noise
 50%; the full panel vs each cytokine left out vs a small panel. Report the effect on Brier score,
 coverage and posterior contraction. Nothing is selected from these results; they are reported.
 
+**5.3b Misspecification stress test (0.25 h).** Everything above is well specified: the virtual
+patients come from the same engine, prior and noise model the twin assumes. There, near-nominal
+coverage is the *expected* result. It shows the inference code is correct; it says nothing
+about whether the model fits real patients. To show how the twin fails when an assumption is
+wrong, regenerate the test readings from the stored truth with assay CV 40% while the twin still
+assumes 25%, and report coverage and Brier score next to the well-specified numbers. This only
+re-weights the library, so it needs no new simulations.
+
 **5.4 Report.** `docs/validation_report.md` and `docs/results/validation.json`, rendered into the
-README by `scripts/render_results.py`.
+README by `scripts/render_results.py`. State the well-specified framing of 5.3b near the top.
 
 **Required tests:** coverage and rank computations on a synthetic case with a known answer; the
 bootstrap resamples patients; evaluation refuses to run on development patients unless asked
@@ -396,10 +467,20 @@ used. Remember the engine semantics: values above 1 add (value - 1) per step; va
 
 **6.2 Search on the twin (1.5 h).** Fitness is evaluated on the twin's ensemble only: M = 8 θ
 drawn from the posterior × 4 seeds. Twin runs re-simulate from injury, and runs dead before T_d
-are replaced. Fitness: 28-day mortality across the ensemble, then mean final `oxy_deficit` +
-`total_infection` as a tie-breaker (the V1 fitness). Use common random numbers within a
-generation. Start with population 32 and 15 generations; **cap at about 10 CPU-hours per
-patient** and state the cost before launching.
+are replaced. Fitness: mortality by the fitness horizon H_f (fixed in 3.4) across the ensemble,
+then mean final `oxy_deficit` + `total_infection` as a tie-breaker (the V1 fitness). Use common
+random numbers within a generation.
+- **The 10 CPU-hour cap per search is binding.** Cost ≈ population × generations × 32 runs ×
+  (H_f in steps) × (time per step from 3.3), less early deaths. Defaults: population 24,
+  15 generations = 11,520 runs; at H_f = 14 days (2,870 steps) and 1 ms per step that is at
+  most about 9 CPU-hours. (The earlier default of population 32 at the full 28 days came to
+  13-25 CPU-hours depending on early deaths, over the cap.) If the measured step time or H_f
+  makes it larger, cut generations first, then population, and write the arithmetic in the
+  launch log. State the cost before launching.
+- Scoring (6.4) always uses the full 28 days, whatever H_f is.
+- Not done: snapshotting engine state at T_d to skip the shared history. It would save only
+  612 of 2,870-5,760 steps per run (11-21%) for a large C++ change (serializing every agent and
+  the generator).
 
 **6.3 One-size-fits-all schedule.** The same GA once, with the ensemble drawn from the prior
 (library θ alive at T_d) instead of a twin.
@@ -408,7 +489,7 @@ patient** and state the cost before launching.
 seed, reseeded at T_d with R = 64 seeds from the **future** range. The history up to T_d must
 match the truth (assert it). Score no treatment, the one-size-fits-all schedule and the twin
 schedule on the same 64 futures. Report mortality and paired differences with 95% CIs.
-Optionally add an **oracle** schedule (GA on the true θ) as an upper bound.
+Optionally add an **oracle** schedule (GA on the true θ, under the same cap) as an upper bound.
 
 **6.5 Which patients.** Choose 3-5 test patients by a rule fixed before any treatment result is
 seen and written down in `docs/`. Suggested rule: twin-forecast 28-day mortality between 30% and
@@ -448,19 +529,22 @@ replaces this with the SageMaker instance's figure.
 |---|---|
 | Phase 2 pilot (local) | about 2, free |
 | Library | at most 100 |
-| GA calibration, 60 patients | about 60-120 |
-| Treatment search, 5 patients + one-size-fits-all | about 60 |
-| **Total on AWS** | **about 220-280** |
+| GA calibration, 60 patients (20 development + 40 test subsets) | about 60-120 |
+| Treatment search, 5 patients + one-size-fits-all (6 × at most 10) | at most 60 |
+| Oracle schedules, optional (5 × at most 10) | at most 50 |
+| **Total on AWS** | **about 220-330** |
 
-On 36-vCPU compute-optimized instances, that is roughly 7-8 instance-hours: an estimate of about
+On 36-vCPU compute-optimized instances, that is roughly 6-9 instance-hours: an estimate of about
 $15-40 including overhead. Check current prices before each launch. The budget alarm is $50.
+The Apple Silicon step time is optimistic for SageMaker instances; every row is re-estimated
+with the Phase 3 measurement before its job launches.
 
 ## Cut order if needed
 
 1. The oracle schedule (Phase 6.4).
-2. The GA calibration (Phase 4.3); keep the grid posterior. The GA still appears in Phase 6.
+2. The GA calibration (Phase 4.3); keep the library posterior. The GA still appears in Phase 6.
 3. Measurement-design studies beyond the sampling interval (Phase 5.3).
-4. Smaller cohorts (test 40 → 20).
+4. Smaller GA-calibration subsets (test 40 → 20). The library-based cohorts stay at full size.
 5. Phase 6 entirely: calibration with validated uncertainty is still a complete project.
 
 Never cut: hidden truth, separate seed ranges, the development/test split, coverage reporting,

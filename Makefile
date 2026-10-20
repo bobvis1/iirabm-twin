@@ -1,5 +1,5 @@
 # ENGINE_DIR points at the engine source (git submodule). Before the submodule exists, use
-#   make ENGINE_DIR=../iirabm_public <target>
+#   make ENGINE_DIR=../iirabm <target>
 ENGINE_DIR ?= engine
 export ENGINE_DIR
 

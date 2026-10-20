@@ -18,7 +18,7 @@ ARPA-H CIRCLE program). Honest verification and validation matter more than impr
 ## Two repositories, two licenses
 
 - **The engine** is the user's fork of IIRABM, licensed **GPL-2.0-or-later**. The local working
-  copy is `../iirabm_public` (upstream: `bitbucket.org/cockrell/iirabm_public`). It is included
+  copy is `../iirabm` (upstream: `bitbucket.org/cockrell/iirabm_public`). It is included
   here as a git submodule at `engine/`, pinned to a commit. All C++ changes are made in the
   engine fork, on its `twin` branch, never in this repository.
 - **This repository** (Python orchestration, analysis, infrastructure, docs) is **MIT**.
@@ -30,7 +30,7 @@ ARPA-H CIRCLE program). Honest verification and validation matter more than impr
   fork keeps the upstream copyright notice and includes the GPL text (`COPYING`).
 - `ENGINE_DIR` (Makefile variable and environment variable) points at the engine source.
   Default: `engine`. During local development before the submodule exists, use
-  `ENGINE_DIR=../iirabm_public`.
+  `ENGINE_DIR=../iirabm`.
 
 ## The engine at a glance (V1, verified by reading and running it)
 
@@ -74,13 +74,14 @@ ARPA-H CIRCLE program). Honest verification and validation matter more than impr
 gives different trajectories with libc++ (macOS) and libstdc++ (Linux). GCC on arm64 also fuses
 multiply-adds by default, which changes float rounding. Therefore:
 
-- The **reference platform** is the Linux container (GCC, libstdc++), built with
-  `-O2 -ffp-contract=off` and never `-ffast-math` or `-march=native`. Golden files, legacy
-  baselines and every reported number come from it.
+- The **reference platform** is the `linux/amd64` container (GCC, libstdc++; the architecture
+  SageMaker runs), built with `-O2 -ffp-contract=off` and never `-ffast-math` or
+  `-march=native`. Golden files, legacy baselines and every reported number come from it. On
+  the Mac it runs under emulation, which is fine for the short golden runs.
 - macOS-native builds are for quick development checks only; never compare their output with
   golden files.
-- Phase 3 checks that `linux/arm64` (local Docker) and `linux/amd64` (SageMaker) produce
-  identical output. If they do not, all reported runs use `linux/amd64`.
+- Phase 1 checks whether a native `linux/arm64` container gives identical output. Only if it
+  does may arm64 be used for fast local runs; Phase 3 checks SageMaker against local amd64.
 
 ## Non-negotiable methodological rules
 
@@ -110,8 +111,11 @@ multiply-adds by default, which changes float rounding. Therefore:
    are tested.
 8. **Engine behavior changes are measured.** Bug fixes that change results sit behind an
    `engine_fixes` flag until Phase 1 is accepted. With the flag off, the new CLI reproduces the
-   legacy build exactly; with it on, the change in outcome distributions is reported. After
-   Phase 1, fixes are on by default and the legacy mode stays available for comparison.
+   legacy build exactly for a single run per process, on the reference build. (The CLI always
+   resets state between runs, so it never reproduces legacy multi-run output, which defect 3
+   corrupts; that difference is measured separately.) With the flag on, the change in outcome
+   distributions is reported. After Phase 1, fixes are on by default and the legacy mode stays
+   available for comparison.
 
 ## Words to use and avoid
 
@@ -156,7 +160,8 @@ engine binary and every Python dependency are baked into the image.
 - ruff for lint and format (line length 100); type hints on public functions; pytest under
   `tests/`.
 - C++ in the engine fork: C++17, builds with `clang++` and `g++`, no MPI required for the new
-  CLI. Keep the original sources compiling as the `legacy` target for comparison.
+  CLI. The `legacy` target builds pristine upstream plus compile-only patches, as PLAN.md 1.1
+  describes; PLAN.md is the one place that procedure is written down.
 - **Local first:** every job runs locally on a small sample (for example 2 virtual patients and
   50 simulations) before it runs on SageMaker.
 - Simulation outputs, Terraform state and `truth/` files are git-ignored. Small derived results
