@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import json
 import os
+from dataclasses import dataclass
 from pathlib import Path
 
 import yaml
@@ -38,3 +40,55 @@ def engine_bin() -> str:
             "(see that script); on SageMaker it is the baked-in binary."
         )
     return value
+
+
+@dataclass(frozen=True)
+class Settings:
+    aws_profile: str
+    region: str
+    owner: str
+    name_prefix: str
+    budget_usd: float
+
+
+@dataclass(frozen=True)
+class Infra:
+    """Resource ids written by `scripts/infra.sh outputs` (config/outputs.json, git-ignored)."""
+
+    bucket: str
+    kms_key_arn: str
+    role_arn: str
+    subnet_ids: list[str]
+    security_group_id: str
+    ecr_repository_url: str
+
+
+def load_aws_settings() -> Settings:
+    raw = load_settings()
+    return Settings(
+        aws_profile=os.environ.get("TWIN_AWS_PROFILE", raw["aws_profile"]),
+        region=os.environ.get("TWIN_REGION", raw["region"]),
+        owner=raw["owner"],
+        name_prefix=raw.get("name_prefix", "twin"),
+        budget_usd=float(raw.get("budget_usd", 50)),
+    )
+
+
+def load_infra() -> Infra:
+    raw = json.loads((CONFIG_DIR / "outputs.json").read_text())
+    v = {k: x["value"] for k, x in raw.items()}
+    return Infra(
+        bucket=v["bucket"],
+        kms_key_arn=v["kms_key_arn"],
+        role_arn=v["role_arn"],
+        subnet_ids=v["subnet_ids"],
+        security_group_id=v["security_group_id"],
+        ecr_repository_url=v["ecr_repository_url"],
+    )
+
+
+def boto_session():
+    import boto3
+
+    s = load_aws_settings()
+    return boto3.Session(profile_name=s.aws_profile, region_name=s.region)

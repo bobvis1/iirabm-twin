@@ -9,11 +9,16 @@ requires-python = ">=3.11,<3.12"
 dependencies = [
     "matplotlib>=3.11.2",
     "numpy>=2.4.6",
+    "pyarrow==25.0.1",
     "pyyaml>=6.0.3",
     "scipy>=1.17.1",
 ]
 
 [dependency-groups]
+aws = [
+    "boto3>=1.35",
+    "sagemaker==3.25.0",
+]
 dev = [
     "pytest>=8",
     "ruff>=0.6",

@@ -1,0 +1,15 @@
+.git
+.venv
+data
+truth
+build
+outputs
+docs_cache
+infra
+**/__pycache__
+.pytest_cache
+.ruff_cache
+engine/build
+engine/.git
+engine/docs
+engine/tests
