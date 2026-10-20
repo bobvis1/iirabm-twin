@@ -15,7 +15,7 @@ on the **development cohort** (40 patients for the library posterior; the first
   run-mixture likelihood fixes it).
 - **Prior-only baseline** (`prior_only`): every library run alive at 72 h, equally weighted.
 - **GA calibration** (`twin.ga`, `twin.calibrate.ga_calibrate`): population 40, tournament of 2,
-  uniform crossover, one-gene-one-step mutation (as in the lab's 2018 GA design), K = 8 fresh
+  uniform crossover, one-gene-one-step mutation (tournament size and crossover as in Cockrell and An 2018, mutation as in the V1 source), K = 8 fresh
   simulations of the first 72 h per candidate (fixed seeds: common random numbers), early stop after 5
   generations without improvement; then the best 64 evaluated parameter sets are simulated for the full
   horizon (8 seeds each) to forecast. No library is used.

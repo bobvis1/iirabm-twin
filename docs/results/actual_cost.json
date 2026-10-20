@@ -1,0 +1,16 @@
+{
+ "as_of": "2026-10-20T22:34+00:00",
+ "since": "2026-10-19",
+ "account_total_usd": 4.56,
+ "by_service_usd": {
+  "Amazon SageMaker": 4.52,
+  "AWS Key Management Service": 0.03,
+  "AWS Cost Explorer": 0.01,
+  "Amazon Simple Storage Service": 0.01
+ },
+ "daily_usd": {
+  "2026-10-19": 3.89,
+  "2026-10-20": 0.68
+ },
+ "note": "Cost Explorer lags about a day: the most recent days are incomplete. Whole account, not only this project."
+}

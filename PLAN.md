@@ -285,10 +285,11 @@ and full trajectories to `truth/` (git-ignored). Only `twin.truth` reads them, a
 `twin.evaluate` and tests import `twin.truth`.
 
 **2.5 Measurement model (`twin.observe`).**
-- Panel (default): TNF, IL1, IL1ra, IL10, IL8, GCSF, IL12, IFNg. These match the cytokines the
-  ReSCUED team's ARPA-H teaming profile asked a measurement partner to report every 4-6 hours.
-  Verify this against the source before citing it; if it cannot be verified, drop the claim and
-  justify the panel on its own terms.
+- Panel (default): TNF, IL1, IL1ra, IL10, IL8, GCSF, IL12, IFNg. *Verified (2026-10-20, see
+  `docs/references.md`):* the University of Vermont entry (Gary An) in the ARPA-H CIRCLE teaming
+  profiles seeks a partner to measure trans-dermal interstitial-fluid cytokines and return results at
+  4-6 hour intervals, naming TNF, IL1b, IL1ra, IL10, IL8, GCSF, IL12 and IFNg. The page does not use
+  the project name ReSCUED; the model's `IL1` stands for the model's generic IL-1.
 - Readings at every 51 steps (6 h) from step 51 up to T_d: 12 readings by default.
 - Noise: multiplicative log-normal with coefficient of variation 25% (configurable); a lower
   limit of detection per cytokine (values below it are reported as censored, not as numbers);
@@ -409,7 +410,7 @@ evaluation runs **fresh simulations** (calibration seeds, horizon T_d only, so a
 with no library. This is the method that scales when θ is too large for a library.
 - A generic `twin.ga` module (unit-tested on a toy function): mixed integer and continuous genes,
   tournament selection (size 2), uniform crossover, and mutation that moves one gene a step up or
-  down. These mirror the lab's 2018 GA design; cite it.
+  down. Tournament size and crossover follow Cockrell and An 2018; the mutation follows the V1 source (the paper does not describe one).
 - Use common random numbers: within a generation, every candidate uses the same calibration
   seeds.
 - Start with population 40, up to 25 generations, K = 8 seeds per candidate, and stop early on
@@ -540,6 +541,16 @@ that this is one 2017 model, not a clinical result.
 
 ### Phase 7: Results, documentation, teardown (2.5 h)
 
+*Status (2026-10-20): README (reviewers' section, architecture, reproduction table, generated results,
+cost, limits, licensing, how it was built), `docs/lab_standards.md`, `docs/references.md` (every citation
+checked; two claims corrected or removed) and `scripts/cost_report.py` are done. **Teardown done
+(2026-10-20, with your approval):** 25 Terraform resources destroyed; checked directly: no `twin-` bucket,
+ECR repository, IAM role, budget, VPC, endpoint or security group remains; the KMS key is scheduled for
+deletion on 2026-10-27 (not billed while pending). The tag search still lists finished SageMaker job
+records and trial components (they cannot be deleted and cost nothing) and a few entries it has not yet
+dropped. **Decided:** the engine fixes are not offered to the model's authors (no pull request, no note); they stay in the fork. **Waiting on you:** making the repository public. Actual cost must be
+re-recorded after Cost Explorer catches up (`scripts/cost_report.py`).*
+
 - `README.md`:
   - "For reviewers" section at the top.
   - Mermaid architecture diagram.
@@ -604,7 +615,7 @@ the prior-only baseline, the legacy-equivalence test, network isolation.
 
 ## Out of scope
 
-Calibrating the engine's internal rules (the lab's later work does this), unknown injury time
+Calibrating the engine's internal rules, unknown injury time
 (an extra nuisance parameter; note it in future work), real patient data, neural-network
 surrogates of the engine, Spot training jobs, SageMaker Pipelines, MLflow, a web showcase (a
 possible stretch after Phase 7).

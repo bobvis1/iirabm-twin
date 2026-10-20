@@ -1,8 +1,9 @@
 """A small genetic algorithm with mixed integer and continuous genes.
 
-Design follows the genetic algorithm the An-Cockrell lab used on this model (Cockrell and An,
-PLoS Computational Biology, 2018): tournament selection of size 2, uniform crossover, and a
-mutation that moves one gene a step up or down. Additions, for stability with small populations:
+Design follows the genetic algorithm used with this model: tournament selection of size 2 and
+uniform crossover (both stated in Cockrell and An, PLoS Computational Biology, 2018) and a mutation
+that moves one gene one level up or down (from the IIRABM V1 source, gaFunctions.cpp; the paper does
+not describe its mutation operator). Additions, for stability with small populations:
 elitism (the best few survive unchanged), a small chance of resetting one gene to a random value,
 a cache so no individual is evaluated twice, and early stopping when the best fitness stops
 improving. Fitness is maximised and is computed by a caller-supplied batch function, so the
