@@ -23,6 +23,7 @@ packages = ["src/twin"]
 
 [tool.ruff]
 line-length = 100
+extend-exclude = ["engine"]
 src = ["src", "tests"]
 
 [tool.ruff.lint]
