@@ -2,7 +2,7 @@
 
 A demonstration, in simulation where the true answer is known, of the loop that a medical digital twin
 runs: **measure** noisy cytokine readings every 6 hours, **model** by calibrating a mechanistic immune
-model to one patient with honest uncertainty, check the twin's forecasts against the hidden truth, then
+model to one patient with uncertainty, check the twin's forecasts against the hidden truth, then
 **modulate**: search for a treatment schedule on the twin and score it on the true patient. The model
 is the public Innate Immune Response Agent-Based Model (IIRABM; Cockrell and An, 2017). Simulations run
 in parallel on Amazon SageMaker in a locked-down AWS account.
@@ -133,6 +133,17 @@ one-size-fits-all schedule +0.000 (95% interval -0.037 to +0.037); oracle (true 
 -0.072 (95% interval -0.109 to -0.034). Only two of the five patients had a fate treatment could change; the
 twin-personalised schedule did no better than one-size-fits-all.
 <!-- treatment:end -->
+
+### Fate Fork: an animated view of one patient's scored futures
+
+[`docs/showcase/fate_fork.html`](docs/showcase/fate_fork.html) is a self-contained page (open it in
+a browser; no server needed). For one test virtual patient it replays the 72-hour observation
+window, the twin's schedule search, and then the split into 64 fresh futures with no treatment
+versus the twin's schedule, with one-size-fits-all and the oracle as optional overlays. Every line
+is a real engine run from the treatment scoring job (`data/ts-score`), extracted to
+`docs/showcase/test006.json`. It is an illustration of a single patient, not a result; the
+pooled numbers and intervals above are the result. The page quotes no numbers of its own beyond live
+death counts counted from those runs.
 
 ## Limits
 
