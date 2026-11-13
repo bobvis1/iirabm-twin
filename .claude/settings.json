@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(scripts/infra.sh apply -auto-approve)",
+      "Bash(./scripts/infra.sh apply -auto-approve)",
+      "Bash(scripts/infra.sh *)"
+    ]
+  }
+}
